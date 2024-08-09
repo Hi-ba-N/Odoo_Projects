@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_exam_tree" model="ir.ui.view">
+        <field name="name">student.exam.tree</field>
+        <field name="model">student.exams</field>
+        <field name="arch" type="xml">
+            <tree string="Exam">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="student_exam_form" model="ir.ui.view">
+        <field name="name">student.exam.form</field>
+        <field name="model">student.exams</field>
+        <field name="arch" type="xml">
+            <form string="Exam">
+                <header>
+                    <button name="assign_exams" class="oe_highlight"
+                            string="Assign Exam" type="object"
+                            invisible="state == 'assigned'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,assigned"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Papers">
+                                    <field name="paper_ids" mode="tree,form">
+                                    <tree editable="bottom">
+<!--                                        <field name="exam_id" invisible="1"/>-->
+                                        <field name="subject_id"/>
+                                        <field name="max_mark"/>
+                                        <field name="pass_mark"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Students">
+                                <field name="student_ids"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_exam_action" model="ir.actions.act_window">
+        <field name="name">Exams</field>
+        <field name="res_model">student.exams</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

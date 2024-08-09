@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="student_manage_class_tree" model="ir.ui.view">
+        <field name="name">student.manage.class.tree</field>
+        <field name="model">student.class</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Class">
+                <field name="name"/>
+                <field name="department_id"/>
+           </tree>
+        </field>
+    </record>
+        <record id="student_manage_class_form" model="ir.ui.view">
+        <field name="name">student.manage.class.form</field>
+        <field name="model">student.class</field>
+        <field name="arch" type="xml">
+            <form string="Manage Class">
+                <sheet>
+                    <group>
+                        <group>
+                    <field name="name"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="head_of_department_id"/>
+                            <field name="school_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Students">
+                            <field name="student_ids" options="{'create': false, 'create_edit': false}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_manage_class_action" model="ir.actions.act_window">
+        <field name="name">Manage Class</field>
+        <field name="res_model">student.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

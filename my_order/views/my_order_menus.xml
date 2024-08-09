@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="my_order_root_menu" name="My Order">
+        <menuitem id="sale_menu" name="Sale" action="my_order_action"/>
+    </menuitem>
+</odoo>

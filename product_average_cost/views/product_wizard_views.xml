@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="product_quantity_price_view_form" model="ir.ui.view">
+       <field name="name">product.quantity.price.view.form</field>
+       <field name="model">product.wizard</field>
+       <field name="arch" type="xml">
+           <form string="String">
+               <group>
+                   <field name="quantity"/>
+                   <field name="price"/>
+               </group>
+
+<!--               <footer>-->
+<!--&lt;!&ndash;                   <button name="confirm" string="Send" type="object"/>&ndash;&gt;-->
+<!--                   <button name="cancel" string="Cancel" special="cancel"/>-->
+<!--               </footer>-->
+           </form>
+       </field>
+   </record>
+
+</odoo>

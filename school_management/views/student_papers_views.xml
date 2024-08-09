@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="student_paper_tree" model="ir.ui.view">
+        <field name="name">student.paper.tree</field>
+        <field name="model">student.paper</field>
+        <field name="arch" type="xml">
+            <tree string="Paper">
+                <field name="subject_id"/>
+                <field name="pass_mark" />
+                <field name="max_mark" />
+            </tree>
+        </field>
+    </record>
+    <record id="student_paper_form" model="ir.ui.view">
+        <field name="name">student.paper.form</field>
+        <field name="model">student.paper</field>
+        <field name="arch" type="xml">
+            <form string="Paper">
+                <sheet>
+                    <group>
+                        <group>
+                             <field name="subject_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            <field name="pass_mark" />
+                            <field name="max_mark" />
+                            </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_paper_action" model="ir.actions.act_window">
+        <field name="name">Paper</field>
+        <field name="res_model">student.paper</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+   <t t-name="test_module.demo">
+		<h1>Welcome</h1>
+       <h1 t-esc="props.test"></h1>
+       <h1 t-esc="props.test2"></h1>
+
+   </t>
+</templates>

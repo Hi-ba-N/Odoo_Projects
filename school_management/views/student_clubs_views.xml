@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_manage_clubs_tree" model="ir.ui.view">
+        <field name="name">student.manage.clubs.tree</field>
+        <field name="model">student.club</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Club">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    <record id="student_manage_club_form" model="ir.ui.view">
+        <field name="name">student.manage.club.form</field>
+        <field name="model">student.club</field>
+        <field name="arch" type="xml">
+            <form string="Manage Club">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="get_events"
+                                type="object"
+                                icon="fa-calendar"
+                                invisible="event_count== 0">
+                            <field string="Events" name="event_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description" widget="html"/>
+                        </group>
+                        <notebook>
+                            <page string="Student">
+                            <field name="student_ids"
+                                   options="{'no_quick_create': True, 'no_create_edit': True}"
+                                   />
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_manage_club_action" model="ir.actions.act_window">
+        <field name="name"> Manage Clubs</field>
+        <field name="res_model">student.club</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

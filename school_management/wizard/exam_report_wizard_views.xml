@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="exam_wizard_action" model="ir.actions.act_window">
+        	<field name="name">Exam Report</field>
+        	<field name="type">ir.actions.act_window</field>
+        	<field name="res_model">exam.report.wizard</field>
+        	<field name="view_mode">form</field>
+        	<field name="target">new</field>
+</record>
+
+ <record id="exam_wizard_view_form" model="ir.ui.view">
+       <field name="name">exam.wizard.view.form</field>
+       <field name="model">exam.report.wizard</field>
+       <field name="arch" type="xml">
+           <form string="String">
+               <group>
+
+                   <field name="student_ids" widget="many2many_tags"/>
+               </group>
+               <footer>
+                   <button name="action_report_exam" string="Print Report"  class="oe_highlight" type="object"/>
+                   <button name="cancel" string="Cancel" special="cancel" class="oe_highlight"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+</odoo>

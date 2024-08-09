@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="student_leave_tree" model="ir.ui.view">
+        <field name="name">student.leave.tree</field>
+        <field name="model">student.leave</field>
+        <field name="arch" type="xml">
+            <tree string="Leave">
+                <field name="student_id" />
+                <field name="class_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="student_leave_form" model="ir.ui.view">
+        <field name="name">student.leave.form</field>
+        <field name="model">student.leave</field>
+        <field name="arch" type="xml">
+            <form string="Leave">
+                <header>
+<!--                    <button name="action_register" class="oe_highlight"-->
+<!--                            string="Print Report"-->
+<!--                            />-->
+                </header>
+                <sheet>
+                    <group>
+                        <field name="student_id" options="{'create': false, 'create_edit': false}"/>
+                       <field name="class_id" options="{'create': false, 'create_edit': false}"/>
+                        <field name="start_date" />
+                        <field name="end_date" />
+                        <field name="total_days"/>
+                        <field name="half_day"/>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_leave_action" model="ir.actions.act_window">
+        <field name="name">Leave</field>
+        <field name="res_model">student.leave</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

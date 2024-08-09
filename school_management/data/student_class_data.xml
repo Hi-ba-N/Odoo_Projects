@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="student_class_data" model="student.class">
+            <field name="name">class 5</field>
+            <field name="department_id" ref="student_department_lp"/>
+        </record>
+</odoo>

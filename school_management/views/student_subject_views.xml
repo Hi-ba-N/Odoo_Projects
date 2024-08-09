@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_manage_subject_tree" model="ir.ui.view">
+        <field name="name">student.manage.subject.tree</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Class">
+                <field name="name"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+     <record id="student_manage_subject_form" model="ir.ui.view">
+        <field name="name">student.manage.subject.form</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <form string="Manage Subject">
+                <sheet>
+                    <group>
+                        <group>
+                    <field name="name"/>
+                        </group>
+                        <group>
+                    <field name="department_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_manage_subject_action" model="ir.actions.act_window">
+        <field name="name">Manage Subject</field>
+        <field name="res_model">student.subject</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

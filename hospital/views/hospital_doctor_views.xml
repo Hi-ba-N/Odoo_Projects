@@ -1,0 +1,23 @@
+<odoo>
+     <record id="hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hr_employee_customizations_form" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="work_email" position="after">
+                <field name="specialization" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                <!--    <field name="domain_force">[('state', '=', 'pending_approval')]</field>-->
+<!--    <field name="perm_read" eval="True"/>-->
+<!--    <field name="perm_write" eval="False"/>-->
+<!--    <field name="perm_create" eval="False"/>-->
+<!--    <field name="perm_unlink" eval="False"/>-->
+
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="employee_material_request_tree" model="ir.ui.view">
+        <field name="name">employee.material.request.tree</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <tree string="Material Request">
+                <field name="sequence"/>
+                <field name="employee_id"/>
+                <field name="request_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="employee_material_request_form" model="ir.ui.view">
+        <field name="name">employee.material.request.form</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form string="Manage Request">
+                <header>
+                    <button name="action_confirm" class="oe_highlight"
+                            string="Confirm" type="object"
+                            invisible="state != 'draft'" groups="material_request_management.group_requisition_user"/>
+                    <button name="action_approve_manager" class="oe_highlight"
+                            string="Approve Manager" type="object"
+                            groups="material_request_management.group_requisition_manager"
+                    invisible="state == 'manager_approved'"/>
+                    <button name="action_approve_head" class="oe_highlight"
+                            string="Approve Head" type="object"
+                            groups="material_request_management.group_requisition_head"
+                            invisible="state in ('head_approved', 'rfq','transfer')"/>
+
+                    <button name="action_reject" class="oe_highlight"
+                            string="Reject" type="object"
+                            groups="material_request_management.group_requisition_head"
+                      invisible="state == 'rejected'"/>
+                     <field name="state" widget="statusbar"
+                           statusbar_visible="draft,pending_approval,manager_approved,head_approved"/>
+
+                </header>
+                <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="get_rfq"
+                                type="object"
+                                icon="fa-credit-card"
+                                    invisible="rfq_count== 0">
+                            <field string="RFQ" name="rfq_count" widget="statinfo"/>
+                        </button>
+                           <button class="oe_stat_button"
+                                name="get_transfer"
+                                type="object"
+                                   icon="fa-bars"
+                                   invisible="transfer_count== 0">
+                               <field string="Transfer" name="transfer_count" widget="statinfo"/>
+
+                        </button>
+                   </div>
+                      <div class="oe_title">
+                        <h1>
+                            <field name="sequence"/>
+                        </h1>
+                      </div>
+                    <group>
+                    <group>
+                        <field name="employee_id"/>
+                        </group>
+                        <group>
+                         <field name="request_date"/>
+                        </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="line_ids" mode="tree,form">
+                                    <tree editable="bottom">
+                                        <field name="material_action"/>
+                                        <field name="product_id"/>
+                                        <field name="quantity"/>
+                                        <field name="source_location_id" invisible="material_action == 'purchase'"/>
+                                        <field name="destination_location_id" invisible="material_action == 'purchase'"/>
+                                    </tree>
+                                </field>
+                        </page>
+
+                    </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="employee_material_request_action" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

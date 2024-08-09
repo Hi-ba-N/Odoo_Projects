@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="material_request_root_menu" name="Requisitions">
+        <menuitem id="material_request_id" name="Material Request" action="employee_material_request_action"/>
+    </menuitem>
+</odoo>

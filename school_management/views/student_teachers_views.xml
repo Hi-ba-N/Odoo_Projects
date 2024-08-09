@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="student_manage_teacher_action" model="ir.actions.act_window">
+        <field name="name">Manage Teacher</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('role', '=', 'teacher')]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

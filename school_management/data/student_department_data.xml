@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="student_department_lp" model="student.department">
+            <field name="name">LP</field>
+        </record>
+        <record id="student_department_up" model="student.department">
+            <field name="name">UP</field>
+        </record>
+        <record id="student_department_hs" model="student.department">
+            <field name="name">HS</field>
+        </record>
+    </data>
+</odoo>

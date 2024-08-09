@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="student_subject_data1" model="student.subject">
+            <field name="name">Maths</field>
+            <field name="department_id" ref="student_department_lp"/>
+        </record>
+ <record id="student_subject_data2" model="student.subject">
+            <field name="name">English</field>
+            <field name="department_id" ref="student_department_up"/>
+        </record>
+</odoo>

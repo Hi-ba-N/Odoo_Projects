@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <record id="ir_cron_scheduler_event_action" model="ir.cron">
+        <field name="name">Events Remainder</field>
+        <field name="model_id" ref="model_student_event"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="numbercall">-1</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="state">code</field>
+        <field name="code">model.action_send_event_emails()</field>
+    </record>
+
+    <record id="ir_cron_archive_old_events" model="ir.cron">
+        <field name="name">Archive Old Events</field>
+        <field name="model_id" ref="model_student_event"/>
+        <field name="state">code</field>
+        <field name="code">model.archive_events()</field>
+        <field name="active">True</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+</data>

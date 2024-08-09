@@ -1,0 +1,22 @@
+<odoo>
+    <record id="my_order_form" model="ir.ui.view">
+        <field name="name">my.order.form</field>
+        <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="sales_person"/>
+            </field>
+            </field>
+    </record>
+    <record id="my_order_action" model="ir.actions.act_window">
+        <field name="name">My order</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+
+</odoo>

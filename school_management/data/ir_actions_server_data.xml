@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.server" id="action_create_user">
+            <field name="name">Create User for Student</field>
+            <field name="model_id" ref="model_student_registration"/>
+            <field name="state">code</field>
+            <field name="code">action=records.create_user()</field>
+
+        </record>
+        <record model="base.automation"
+                id="automated_action_create_user_on_student_creation">
+            <field name="name">Create User on Student Creation</field>
+            <field name="model_id" ref="model_student_registration"/>
+            <field name="trigger">on_create</field>
+            <field name="action_server_ids"
+                   eval="[ref('school_management.action_create_user')]"/>
+        </record>
+        <record model="ir.actions.server" id="action_create_user_teacher">
+            <field name="name">Create User for Teacher</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action=records.create_user_teacher()</field>
+        </record>
+        <record model="base.automation"
+                id="automated_action_create_user_on_teacher_creation">
+            <field name="name">Create User on Teacher Creation</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="trigger">on_create</field>
+            <field name="action_server_ids"
+                   eval="[ref('school_management.action_create_user_teacher')]"/>
+        </record>
+        <record model="ir.actions.server" id="action_create_user_staff">
+            <field name="name">Create User for Staffr</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action=records.create_user_staff()</field>
+
+        </record>
+        <record model="base.automation"
+                id="automated_action_create_user_on_staff_creation">
+            <field name="name">Create User on Staff Creation</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="trigger">on_create</field>
+            <field name="action_server_ids"
+
+                   eval="[ref('school_management.action_create_user_staff')]"/>
+        </record>
+    </data>
+</odoo>

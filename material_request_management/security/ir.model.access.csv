@@ -1,0 +1,12 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_material_request_user,access.material.request.user,model_material_request,,1,1,1,1
+access_material_order_line_user,access.material.order.line.user,model_material_order_line,,1,1,1,1
+
+
+
+
+
+
+
+
+

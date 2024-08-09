@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="student_manage_event_tree" model="ir.ui.view">
+        <field name="name">student.manage.event.tree</field>
+        <field name="model">student.event</field>
+        <field name="arch" type="xml">
+            <tree string="Manage Event">
+                <field name="name"/>
+                 <field name="start_date"/>
+                <field name="end_date"/>
+                 <field name="venue"/>
+                 <field name="state"/>
+           </tree>
+        </field>
+    </record>
+    <record id="student_manage_event_form" model="ir.ui.view">
+        <field name="name">student.manage.event.form</field>
+        <field name="model">student.event</field>
+        <field name="arch" type="xml">
+            <form string="Manage Event">
+                 <header>
+                     <button name="action_book" class="oe_highlight" string="Book"
+                             type="object" invisible="state == 'booked'" />
+                      <button name="action_send_event_emails" type="object"
+                       string="Send Email" class="oe_highlight"/>
+                      <field name="state" widget="statusbar" statusbar_visible="new,booked,cancelled"/>
+            </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            </group>
+                        <group>
+                            <field name="club_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            <field name="venue"/>
+                        </group>
+                        </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name ='message_follower_ids'/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_manage_event_search" model="ir.ui.view">
+        <field name="name">student.event.search</field>
+        <field name="model">student.event</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Archived" name="active" domain="[('active', '=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="student_manage_event_action" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="res_model">student.event</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

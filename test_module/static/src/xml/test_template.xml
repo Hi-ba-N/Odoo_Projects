@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+   <t t-name="workshop">
+		<h1>Hello World</h1>
+<DemoComponent test="sample" test2='"sample2"'/>
+       <input type="number" t-model="state.value" ></input>
+       <br/>
+       <t t-log="state"/>
+       <t t-if="state.toggle and state.value == 10">
+	<h1>TOGGLE TRUE</h1>
+
+           <t t-elif=" state.value==5">
+               <h1>COUNT Not 10</h1>
+</t>
+<t else=""/>
+
+</t>
+
+       <button t-on-click="add">Increment</button>
+
+       <button t-on-click="decrement">Decrement</button>
+   </t>
+</templates>

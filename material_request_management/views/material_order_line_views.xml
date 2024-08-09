@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="employee_material_order_tree" model="ir.ui.view">
+        <field name="name">employee.material.order.tree</field>
+        <field name="model">material.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Material Request">
+                <field name="product_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="employee_material_order_form" model="ir.ui.view">
+        <field name="name">employee.material.order.form</field>
+        <field name="model">material.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Manage Request">
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="product_id"/>
+                    </group>
+                    <group>
+                        <field name="quantity"/>
+                        <field name="material_action"/>
+                        <field name="source_location_id"/>
+                        <field name="destination_location_id"/>
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="employee_material_order_action" model="ir.actions.act_window">
+        <field name="name">Material Order</field>
+        <field name="res_model">material.order.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="student_academic_data1" model="student.academic">
+            <field name="name">2019-2020</field>
+        </record>
+    <record id="student_academic_data2" model="student.academic">
+            <field name="name">2020-2021</field>
+        </record>
+</odoo>

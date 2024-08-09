@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="student_root_menu" name="School Management">
+        <menuitem id="register_menu" name="Register" sequence="1">
+        <menuitem id="student_registration_menu" name="Register"
+                  action="student_registration_action" />
+            <menuitem id="student_list_menu" name="Students" action="student_list_action"/>
+            </menuitem>
+        <menuitem id="test_menu" name="Employee" sequence="2">
+            <menuitem id="employee_menu" name="Employee"
+                  action="res_partner_action" sequence="2"/>
+                    <menuitem id="teacher_view" name="Teachers"
+                   sequence="3" action="student_manage_teacher_action"/>
+            <menuitem id="staff_view" name="Office Staff"
+                   sequence="3" action="student_manage_staff_action" />
+        </menuitem>
+        <menuitem id="student_event_menu" name="Events"
+                  action="student_manage_event_action" sequence="3"/>
+        <menuitem id="student_club_menu" name="Clubs"
+                  action="student_manage_club_action" sequence="4"/>
+        <menuitem id="student_leave_menu" name="Leaves"
+                  action="student_leave_action" sequence="5"/>
+        <menuitem id="student_exam_menu" name="Exams"
+                  action="student_exam_action" sequence="6">
+        </menuitem>
+
+           <menuitem id="report_menu" name="Reporting" sequence="7">
+                    <menuitem id="leave_report" name="Leave Report" action="leave_wizard_action"/>
+                    <menuitem id="event_report" name="Event Report" action="event_wizard_action"/>
+                    <menuitem id="club_report" name="Club Report" action="club_wizard_action"/>
+                    <menuitem id="class_report" name="Class Report" action="class_wizard_action"/>
+                    <menuitem id="exam_report" name="Exam Report" action="exam_wizard_action"/>
+                </menuitem>
+
+        <menuitem id="student_configuration_menu" name="Configuration" sequence="8">
+            <menuitem id="student_manage_department" name="Manage Departments"
+                      action="student_manage_department_action"/>
+            <menuitem id="student_manage_class" name="Manage Class"
+                      action="student_manage_class_action"/>
+            <menuitem id="student_manage_subject" name="Manage Subject"
+                      action="student_manage_subject_action"/>
+            <menuitem id="student_manage_academic" name="Manage Academic"
+                      action="student_manage_academic_action"/>
+            <menuitem id="student_manage_papers" name="Manage Papers"
+                      action="student_paper_action"/>
+        </menuitem>
+
+    </menuitem>
+</odoo>

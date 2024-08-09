@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_list_action" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">student.registration</field>
+        <field name="view_id" ref="student_registration_tree"/>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'registration')]</field>
+    </record>
+</odoo>

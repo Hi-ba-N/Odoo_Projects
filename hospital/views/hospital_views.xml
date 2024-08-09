@@ -1,0 +1,23 @@
+<odoo>
+     <record id="hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="res_partner_customizations_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="function" position="after">
+<!--                <field name="age"/>-->
+<!--                <field name="blood_group"/>-->
+<!--                <field name="sequence"/>-->
+<!--                <field name="gender"/>-->
+<!--                <field name="dob"/>-->
+            </field>
+        </field>
+    </record>
+
+
+</odoo>
