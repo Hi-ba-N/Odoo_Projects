@@ -14,7 +14,13 @@
        <field name="arch" type="xml">
            <form string="String">
                <group>
-                   <field name="student_ids" widget="many2many_tags"/>
+                   <field name="type"/>
+                   <field name="student_ids" invisible="type == 'club' or type==False" widget="many2many_tags"  options="{'no_quick_create': True,
+                                           'no_create_edit': True}"/>
+                   <field name="club_ids" invisible="type == 'student' or  type==False" widget="many2many_tags"  options="{'no_quick_create': True,
+                                           'no_create_edit': True}"/>
+
+
                </group>
                <footer>
                    <button name="action_report_club" string="Print Report"  class="oe_highlight" type="object" />

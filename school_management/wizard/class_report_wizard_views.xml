@@ -14,7 +14,11 @@
        <field name="arch" type="xml">
            <form string="String">
                <group>
-                   <field name="department_id" />
+                   <field name="department_id"  options="{'no_quick_create': True,
+                                           'no_create_edit': True}"/>
+                   <field name="class_ids" widget="many2many_tags"  domain="[('department_id','=',department_id)]"
+                    options="{'no_quick_create': True,
+                                           'no_create_edit': True}"/>
                </group>
                <footer>
                    <button name="action_report_class" string="Print Report"  class="oe_highlight" type="object" />

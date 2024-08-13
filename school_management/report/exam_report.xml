@@ -1,32 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <template id="report_exam">
-       <t t-call="web.html_container">
-       <t t-call="web.external_layout">
-                       <div class="oe_structure"/>
-                       <h2>Exam Report</h2>
-                       <br/>
-                       <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>Exam</th>
-                    <th>Student</th>
-                    <th>Class</th>
+    <template id="report_exam">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="oe_structure"/>
+                <h2>
+                    <center>Exam Report</center>
+                </h2>
+                <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/>
+                <br/>
+                <br/>
 
-                </tr>
-            </thead>
-            <tbody>
-                <t t-foreach="report" t-as="rep">
-                    <tr>
-                        <td><t t-esc="rep['name']"/></td>
-                        <td><t t-esc="rep['student_name']"/></td>
-                        <td><t t-esc="rep['class_name']"/></td>
-                    </tr>
+                <t t-if="date.get('type')=='student'">
+
+                    <t t-set="student"
+                       t-value="set([rep['student_id'] for rep in report])"/>
+                    <t t-if="len(student) == 1 ">
+                        <h2>
+                            <t t-esc="report[0]['student_name']"/>
+                        </h2>
+                        <br/>
+                        <table class="table table-condensed"
+                               style="text-align: center">
+                            <thead>
+                                <tr>
+
+                                    <th>Sl.No</th>
+                                    <th>Exam</th>
+                                    <th>Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="report" t-as="rep">
+                                    <tr>
+                                        <td>
+                                            <t t-out="rep_index+1"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['exam_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['class_name']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-elif="len(student) !=1 ">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Exam</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="report" t-as="rep">
+                                    <tr>
+                                        <td>
+                                            <t t-out="rep_index+1"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['exam_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['student_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['class_name']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
                 </t>
-            </tbody>
-        </table>
-    </t>
-               </t>
+                <t t-else=" ">
+                    <t t-set="class"
+                       t-value="set([rep['class_id'] for rep in report])"/>
+                    <t t-if="len(class) == 1 ">
+                        <h2>
+                            <t t-esc="report[0]['class_name']"/>
+                        </h2>
+                        <table class="table table-condensed"
+                               style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Exam</th>
 
-   </template>
-</odoo>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="report" t-as="rep">
+                                    <tr>
+                                        <td>
+                                            <t t-out="rep_index+1"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['exam_name']"/>
+                                        </td>
+
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-elif="len(class) !=1 ">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Exam</th>
+
+                                    <th>Class</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <t t-foreach="report" t-as="rep">
+
+                                    <tr>
+                                        <td>
+                                            <t t-out="rep_index+1"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="rep['exam_name']"/>
+                                        </td>
+
+                                        <td>
+                                            <t t-esc="rep['class_name']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+
+                    </t>
+                               </t>
+
+                   </template>
+                </odoo>

@@ -9,7 +9,7 @@ class StudentClub(models.Model):
     _inherit = 'mail.thread'
 
     name = fields.Char(string="Name", required=True)
-    description = fields.Html(String='Description')
+    description = fields.Text(String='Description')
     student_ids = fields.Many2many('student.registration', string='Student', domain="[ ('state', '=', 'registration')]")
     event_count = fields.Integer(compute='_compute_count')
 

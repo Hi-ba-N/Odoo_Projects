@@ -23,7 +23,7 @@ class StudentLeaves(models.Model):
     total_days = fields.Integer(compute="_compute_total_days",
                                 store=True)
     half_day = fields.Boolean("Half Day")
-    reason = fields.Char("Reason")
+    reason = fields.Char("Reason", required=True)
 
     @api.depends("start_date", "end_date")
     def _compute_total_days(self):

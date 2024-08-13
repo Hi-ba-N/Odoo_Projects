@@ -5,6 +5,7 @@ from odoo import api, fields, models
 
 
 class LeaveReportWizard(models.TransientModel):
+    """This leave report wizard"""
     _name = 'leave.report.wizard'
     _description = 'Leave Report Wizard'
 
@@ -16,12 +17,12 @@ class LeaveReportWizard(models.TransientModel):
         string='Type',
         selection=[("class", "Class"), ("student", "Student")])
     class_ids = fields.Many2many('student.class', string='Class')
-    student_ids = fields.Many2many('student.registration', string='Student')
+    student_ids = fields.Many2many('student.registration', string='Student', domain="[ ('state', '=', 'registration')]")
     start_date = fields.Date(string='Start Date')
     end_date = fields.Date(string='End Date')
 
     def action_report_leave(self):
-        """This  will call report_action"""
+        """This  will call report_action and return datas"""
 
         data = {
             'date': self.read()[0],
@@ -29,7 +30,8 @@ class LeaveReportWizard(models.TransientModel):
             'student_ids': self.student_ids.ids,
             'start_date': self.start_date,
             'end_date': self.end_date,
-            'frequency': self.frequency
+            'frequency': self.frequency,
+            'type': self.type
         }
 
         print(data)
