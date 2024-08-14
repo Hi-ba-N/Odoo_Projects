@@ -13,7 +13,9 @@
 
            <t t-set="student" t-value="set([rep['student_id'] for rep in report])"/>
                                <t t-if="len(student) == 1 ">
-                        <h6><t t-esc="report[0]['student_name']"/></h6>
+                           <div>
+                    <strong>Student Name:</strong> <span t-esc="report[0]['student_name']"/>
+                </div>
                                    <br/>
                                    <table class="table table-condensed" style="text-align: center">
                             <thead>
@@ -72,8 +74,9 @@
            <t t-else=" ">
                 <t t-set="class" t-value="set([rep['class_id'] for rep in report])"/>
                                <t t-if="len(class) == 1 ">
-                                 <h6><t t-esc="report[0]['class_name']"/></h6>
-                                   <table class="table table-condensed" style="text-align: center">
+   <div>
+                    <strong>Class Name:</strong> <span t-esc="report[0]['class_name']"/>
+                </div>                                   <table class="table table-condensed" style="text-align: center">
                             <thead>
                                 <tr>
                                     <th>SL.No</th>

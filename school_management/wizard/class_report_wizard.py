@@ -8,16 +8,20 @@ class ClassReportWizard(models.TransientModel):
     _name = 'class.report.wizard'
     _description = 'Club Report Wizard'
 
-    department_id = fields.Many2one('student.department', string='Department')
     class_ids = fields.Many2many('student.class', string='Class')
+    student_ids = fields.Many2many('student.registration', string='Student',domain="[ ('state', '=', 'registration')]")
+    type = fields.Selection(
+        string='Type',
+        selection=[("class", "Class"), ("student", "Student")])
 
     def action_report_class(self):
         """This  will call report_action and return datas"""
 
         data = {
             'date': self.read()[0],
-            'department_id': self.department_id.ids,
-            'class_ids': self.class_ids.ids
+            'class_ids': self.class_ids.ids,
+            'student_ids': self.student_ids.ids,
+            'type': self.type
         }
         print('data', data)
         return self.env.ref(

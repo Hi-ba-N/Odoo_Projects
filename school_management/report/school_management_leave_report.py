@@ -19,9 +19,7 @@ class SchoolManagementLeaveReport(models.AbstractModel):
                                   JOIN student_registration sr ON sr.id = sl.student_id
                                   JOIN student_class sc ON sc.id = sr.student_class_id
                                   """
-        # bcd = 'world'
-        # abc = 'hello %s' % bcd
-        # abc = f'hello {bcd}'
+
         params = []
 
         if data['class_ids']:

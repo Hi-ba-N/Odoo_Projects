@@ -3,7 +3,7 @@ from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
-class SchoolManagementLeaveReport(models.AbstractModel):
+class SchoolManagementExamReport(models.AbstractModel):
     """This is leave report abstract model"""
     _name = 'report.school_management.report_exam'
 
@@ -16,28 +16,36 @@ class SchoolManagementLeaveReport(models.AbstractModel):
         params = []
         print(type(data['class_ids']))
         if data['student_ids']:
-            query = """SELECT sr.first_name AS student_name,sr.id as student_id, sc.name AS exam_name, sl.name as class_name, sl.id as class_id
-                    FROM student_registration sr
-                    JOIN student_exams_student_registration_rel sp ON sr.id = student_registration_id
-                    JOIN student_exams sc ON sc.id = student_exams_id
-                    join student_class sl on sr.id= sl.id 
-                    where sr.id IN %s"""
+            query = """  SELECT se.name as exam_name, sc.name as class_name, sr.id as student_id, sr.first_name as student_name,se.id as exam_id
+                      FROM student_exams se
+                      JOIN student_class sc ON se.class_id = sc.id
+
+                      JOIN student_registration sr ON sr.student_class_id = sc.id
+                      WHERE sr.id IN %s"""
             params.append(tuple(data['student_ids']))
             print(query)
             print(tuple(params))
         elif data['class_ids']:
             print('')
-            query = """SELECT  sc.name AS class_name, sc.id as class_id,sl.name as exam_name
-                    FROM student_class sc
-                    JOIN student_exams_student_registration_rel sp ON sc.id = student_exams_id
-                    join student_exams sl on sc.id = sl.id where sc.id IN %s
-                    """
-        params.append(tuple(data['class_ids']))
+            query = """SELECT se.name as exam_name, sc.name as class_name,sc.id as class_id
+                      FROM student_exams se
+                      JOIN student_class sc ON se.class_id = sc.id
 
-        print('query', query)
-        print('params', params)
+                      WHERE sc.id IN %s
+                                  """
+            params.append(tuple(data['class_ids']))
+        elif data['exam_ids']:
+            query = """
+                              SELECT se.name as exam_name, sc.name as class_name, ss.name as subject_name
+                              FROM student_exams se
+                              JOIN student_class sc ON se.class_id = sc.id
+                              JOIN student_paper sp ON sp.exam_id = se.id
+                              JOIN student_subject ss ON sp.subject_id = ss.id
+                              WHERE se.id IN %s
+                          """
+            params.append(tuple(data['exam_ids']))
 
-        self.env.cr.execute(query , tuple(params))
+        self.env.cr.execute(query, params)
         print('haii')
         report = self.env.cr.dictfetchall()
         if not report:

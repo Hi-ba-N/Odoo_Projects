@@ -8,65 +8,123 @@
                 <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/>
                 <br/>
                 <br/>
-                <t t-set="class"
-                   t-value="set([rep['class_id'] for rep in report])"/>
-                <t t-if="len(class) == 1 ">
-                    <h2>
-                        <t t-esc="report[0]['class_name']"/>
-                    </h2>
-                    <table class="table table-condensed"
-                           style="text-align: left">
-                        <thead>
-                            <tr>
-                                <th>Sl No</th>
-                                <th>Student</th>
+                <t t-if="data['student_ids'] and len(data['student_ids']) == 1">
+                <div>
+                    <strong>Student Name:</strong> <span t-esc="report[0]['student_name']"/>
+                </div>
+                <table class="table table-sm" style="text-align: center">
+                    <thead>
+                        <tr>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="report" t-as="rep">
-                                <tr>
-                                    <td>
-                                        <t t-out="rep_index+1"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="rep['student_name']"/>
-                                    </td>
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
-                </t>
-                <t t-elif="len(class) !=1 ">
-                    <table class="table table-condensed"  style="text-align: left">
-                        <thead>
-                            <tr>
-                                <th>Sl No</th>
-                                <th>Student</th>
-                                <th>Class</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="report" t-as="rep">
-                                <tr>
-                                    <td>
-                                        <t t-out="rep_index+1"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="rep['student_name']"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="rep['class_name']"/>
-                                    </td>
+                            <th>Sl.No</th>
+                            <th>Sequence</th>
+                            <th>Class Name</th>
+                            <th>School</th>
 
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="report" t-as="line">
+                            <td><t t-out="line_index+1"/></td>
+                            <td t-esc="line['sequence']"/>
+                            <td t-esc="line['class_name']"/>
+                            <td t-esc="line['school']"/>
 
-                </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+
+
+            <t t-if="data['student_ids'] and len(data['student_ids']) > 1">
+                <table class="table table-sm" style="text-align: center">
+                    <thead>
+                        <tr>
+                            <th>SL.No</th>
+                            <th>Sequence</th>
+                            <th>Email</th>
+                            <th>Student Name</th>
+                            <th>Class Name</th>
+                            <th>School</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="report" t-as="line">
+                            <td><t t-out="line_index+1"/></td>
+                            <td t-esc="line['sequence']"/>
+                            <td t-esc="line['email']"/>
+                            <td t-esc="line['student_name']"/>
+                            <td t-esc="line['class_name']"/>
+                            <td t-esc="line['school']"/>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+
+
+            <t t-if="data['class_ids'] and len(data['class_ids']) == 1">
+                <div>
+                    <strong>Class Name:</strong> <span t-esc="report[0]['class_name']"/>
+                </div>
+                <table class="table table-sm" style="text-align: center">
+                    <thead>
+                        <tr>
+
+                            <th>SL.No</th>
+                            <th>Sequence</th>
+
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>School</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="report" t-as="line">
+                            <td><t t-out="line_index+1"/></td>
+                            <td t-esc="line['sequence']"/>
+                            <td t-esc="line['student_name']"/>
+                            <td t-esc="line['email']"/>
+                            <td t-esc="line['school']"/>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+
+
+            <t t-if="data['class_ids'] and len(data['class_ids']) > 1">
+                <table class="table table-sm" style="text-align: center">
+                    <thead>
+                        <tr>
+
+                            <th>SL.No</th>
+                            <th>Class Name</th>
+                            <th>Sequence</th>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>School</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="report" t-as="line">
+                            <td t-esc="line['class_name']"/>
+                            <td t-esc="line['sequence']"/>
+                            <td t-esc="line['student_name']"/>
+                            <td t-esc="line['email']"/>
+                            <td t-esc="line['school']"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+
+
             </t>
         </t>
 
     </template>
 </odoo>
+
+
+

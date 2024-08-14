@@ -14,7 +14,7 @@ class ExamReportWizard(models.TransientModel):
     exam_ids = fields.Many2many('student.exams', 'Exam')
     type = fields.Selection(
         string='Type',
-        selection=[("class", "Class"), ("student", "Student")])
+        selection=[("class", "Class"), ("student", "Student"), ('exam', 'Exam')])
 
     def action_report_exam(self):
         """This  will call report_action and return datas"""

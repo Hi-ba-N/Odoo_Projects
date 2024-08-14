@@ -24,7 +24,8 @@
                </group>
 
                <footer>
-                   <button name="action_report_leave" string="Print Report"  class="oe_highlight" type="object"  />
+                   <button name="action_report_leave" string="Print PDF"  class="oe_highlight" type="object"  />
+                   <button name="action_report_xlx_leave" string="Print XLX "  class="oe_highlight" type="object" />
                    <button name="cancel" string="Cancel" special="cancel" class="oe_highlight"/>
                </footer>
            </form>

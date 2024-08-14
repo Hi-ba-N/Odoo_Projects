@@ -47,6 +47,12 @@
         'views/student_menus.xml',
         'report/ir_actions_report.xml',
 
-    ]
+    ],
+'assets': {
+        'web.assets_backend': [
+            'school_management/static/src/js/action_manager.js'
+
+        ],
+    }
 
 }
