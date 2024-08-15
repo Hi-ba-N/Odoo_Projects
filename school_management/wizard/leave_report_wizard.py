@@ -2,15 +2,9 @@
 import json
 import io
 import xlsxwriter
-<<<<<<< HEAD
 from datetime import date
 
 from odoo import fields, models
-=======
-from datetime import timedelta, date
-
-from odoo import api, fields, models
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
 from odoo.exceptions import ValidationError
 from odoo.tools import date_utils
 
@@ -51,18 +45,9 @@ class LeaveReportWizard(models.TransientModel):
             None, data=data)
 
     def action_report_xlx_leave(self):
-<<<<<<< HEAD
         query = """SELECT sl.start_date, sl.end_date , sl.total_days, sl.reason, sr.first_name AS student_name,
         sr.sequence AS sequence,sr.id as student_id,sr.email as email, sc.name AS class_name, sc.id as class_id FROM student_leave sl 
         JOIN student_registration sr ON sr.id = sl.student_id JOIN student_class sc ON sc.id = sr.student_class_id"""
-=======
-        query = """SELECT sl.start_date, sl.end_date , sl.total_days, sl.reason,
-                                                 sr.first_name AS student_name,sr.sequence AS sequence,sr.id as student_id,sc.name AS class_name, sc.id as class_id
-                                          FROM student_leave sl
-                                          JOIN student_registration sr ON sr.id = sl.student_id
-                                          JOIN student_class sc ON sc.id = sr.student_class_id
-                                          """
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
 
         params = []
 
@@ -70,15 +55,9 @@ class LeaveReportWizard(models.TransientModel):
             query += " AND sr.student_class_id IN %s"
             params.append(tuple(self.class_ids.ids))
             print(query)
-<<<<<<< HEAD
         elif self.student_ids.ids:
             query += " AND sl.student_id IN %s"
             params.append(tuple(self.student_ids.ids))
-=======
-        elif self.student_ids:
-            query += " AND sl.student_id IN %s"
-            params.append(tuple(self.student_ids))
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
         if self.frequency == 'day':
             query += " where extract (day from start_date)= extract(day from current_date)"
         elif self.frequency == 'week':
@@ -101,7 +80,6 @@ class LeaveReportWizard(models.TransientModel):
 
         self.env.cr.execute(query, params)
         report = self.env.cr.dictfetchall()
-<<<<<<< HEAD
 
         if not report:
             print('no result')
@@ -110,34 +88,20 @@ class LeaveReportWizard(models.TransientModel):
         data = {
             'result': report
         }
-=======
-        if not report:
-            print('no result')
-            raise ValidationError("No related report found")
-        print(report)
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
 
         return {
             'type': 'ir.actions.report',
             'data': {'model': 'leave.report.wizard',
-<<<<<<< HEAD
                      'options': json.dumps(data,
                                            default=date_utils.json_default),
                      'output_format': 'xlsx',
                      'report_name': 'Leave Excel Report',
 
-=======
-                     'options': json.dumps(report,
-                                           default=date_utils.json_default),
-                     'output_format': 'xlsx',
-                     'report_name': 'Leave Excel Report',
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
                      },
             'report_type': 'xlsx',
         }
 
     def get_xlsx_report(self, data, response):
-<<<<<<< HEAD
         report = data.get('result', [])
         print(report)
         student_ids = list(set(record['student_id'] for record in report))
@@ -229,23 +193,6 @@ class LeaveReportWizard(models.TransientModel):
                 sheet.write(row, 6, record.get('reason', ''), txt)
                 row += 1
 
-=======
-        output = io.BytesIO()
-        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
-        sheet = workbook.add_worksheet()
-        cell_format = workbook.add_format(
-            {'font_size': '12px', 'align': 'center'})
-        head = workbook.add_format(
-            {'align': 'center', 'bold': True, 'font_size': '20px'})
-        txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
-        sheet.merge_range('B2:I3', 'LEAVE REPORT', head)
-        # sheet.merge_range('A4:B4', 'Customer:', cell_format)
-        # sheet.merge_range('C4:D4', data['customer'], txt)
-        # sheet.merge_range('A5:B5', 'Products', cell_format)
-        # for i, product in enumerate(data['products'],
-        #                             start=5):  # Start at row 6 for products
-        #     sheet.merge_range(f'C{i}:D{i}', product, txt)
->>>>>>> d6f0197172a30655fb4f75c274aba406265d547e
         workbook.close()
         output.seek(0)
         response.stream.write(output.read())
