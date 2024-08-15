@@ -14,8 +14,13 @@
        <field name="arch" type="xml">
            <form string="String">
                <group>
-
-                   <field name="student_ids" widget="many2many_tags"/>
+                    <field name="type"/>
+    <field name="class_ids" invisible="type == 'student' or  type==False or type=='exam'"  widget="many2many_tags"  options="{'no_quick_create': True,
+                           'no_create_edit': True}"/>
+   <field name="student_ids" invisible="type == 'class' or type==False or type=='exam'" widget="many2many_tags"  options="{'no_quick_create': True,
+                           'no_create_edit': True}"/>
+   <field name="exam_ids" invisible="type == 'class' or type==False or type=='student'" widget="many2many_tags"  options="{'no_quick_create': True,
+                           'no_create_edit': True}"/>
                </group>
                <footer>
                    <button name="action_report_exam" string="Print Report"  class="oe_highlight" type="object"/>

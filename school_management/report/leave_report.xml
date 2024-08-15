@@ -4,32 +4,137 @@
        <t t-call="web.html_container">
        <t t-call="web.external_layout">
                        <div class="oe_structure"/>
-                       <h2>Leave Report</h2>
-                       <br/>
-                       <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Total Days</th>
-                    <th>Reason</th>
-                    <th>Class</th>
-                    <th>Student</th>
-                </tr>
-            </thead>
-            <tbody>
-                <t t-foreach="report" t-as="rep">
-                    <tr>
-                        <td><t t-esc="rep['start_date']"/></td>
-                        <td><t t-esc="rep['end_date']"/></td>
-                        <td><t t-esc="rep['total_days']"/></td>
-                        <td><t t-esc="rep['reason']"/></td>
-                        <td><t t-esc="rep['class_name']"/></td>
-                        <td><t t-esc="rep['student_name']"/></td>
-                    </tr>
-                </t>
-            </tbody>
-        </table>
+           <h2><center>Leave Report</center></h2>
+           <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/>
+           <br/>
+           <br/>
+
+           <t t-if="date.get('type')=='student'">
+
+           <t t-set="student" t-value="set([rep['student_id'] for rep in report])"/>
+                               <t t-if="len(student) == 1 ">
+                           <div>
+                    <strong>Student Name:</strong> <span t-esc="report[0]['student_name']"/>
+                </div>
+                                   <br/>
+                                   <table class="table table-condensed" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>SL.No</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Total Days</th>
+                                <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <t t-foreach="report" t-as="rep">
+                                        <tr>
+                                            <td><t t-out="rep_index+1"/></td>
+                                            <td><t t-esc="rep['start_date']"/></td>
+                                            <td><t t-esc="rep['end_date']"/></td>
+                                            <td><t t-esc="rep['total_days']"/></td>
+                                            <td><t t-esc="rep['reason']"/></td>
+                                        </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                               </t>
+                                   <t t-elif="len(student) != 1 " >
+                                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>SL.No</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Total Days</th>
+                                <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <t t-foreach="report" t-as="rep">
+                                        <tr>
+                                            <td><t t-out="rep_index+1"/></td>
+                                            <td><t t-esc="rep['student_name']"/></td>
+                                            <td><t t-esc="rep['class_name']"/></td>
+                                            <td><t t-esc="rep['start_date']"/></td>
+                                            <td><t t-esc="rep['end_date']"/></td>
+                                            <td><t t-esc="rep['total_days']"/></td>
+                                            <td><t t-esc="rep['reason']"/></td>
+                                        </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                                   </t>
+       </t>
+           <t t-else=" ">
+                <t t-set="class" t-value="set([rep['class_id'] for rep in report])"/>
+                               <t t-if="len(class) == 1 ">
+   <div>
+                    <strong>Class Name:</strong> <span t-esc="report[0]['class_name']"/>
+                </div>                                   <table class="table table-condensed" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <th>SL.No</th>
+                                    <th>Student</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Total Days</th>
+                                <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <t t-foreach="report" t-as="rep">
+                                        <tr>
+                                            <td><t t-out="rep_index+1"/></td>
+                                            <td><t t-esc="rep['student_name']"/></td>
+                                            <td><t t-esc="rep['start_date']"/></td>
+                                            <td><t t-esc="rep['end_date']"/></td>
+                                            <td><t t-esc="rep['total_days']"/></td>
+                                            <td><t t-esc="rep['reason']"/></td>
+                                        </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                               </t>
+                                   <t t-elif="len(class) !=1 " >
+                                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>SL.No</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Total Days</th>
+                                <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <t t-foreach="report" t-as="rep">
+                                        <tr>
+                                            <td><t t-out="rep_index+1"/></td>-->
+                                            <td><t t-esc="rep['student_name']"/></td>
+                                            <td><t t-esc="rep['class_name']"/></td>
+                                            <td><t t-esc="rep['start_date']"/></td>
+                                            <td><t t-esc="rep['end_date']"/></td>
+                                            <td><t t-esc="rep['total_days']"/></td>
+                                            <td><t t-esc="rep['reason']"/></td>
+                                        </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                                   </t>
+           </t>
+
+
+
     </t>
                </t>
 
