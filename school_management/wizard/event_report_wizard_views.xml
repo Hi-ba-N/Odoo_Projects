@@ -22,6 +22,7 @@
                </group>
                <footer>
                    <button name="action_report_event" string="Print Report"  class="oe_highlight" type="object"/>
+                   <button name="action_report_xlx_event" string="Print XLX "  class="oe_highlight" type="object" />
                    <button name="cancel" string="Cancel" special="cancel" class="oe_highlight"/>
                </footer>
            </form>

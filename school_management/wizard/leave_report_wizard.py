@@ -22,7 +22,8 @@ class LeaveReportWizard(models.TransientModel):
         string='Type',
         selection=[("class", "Class"), ("student", "Student")])
     class_ids = fields.Many2many('student.class', string='Class')
-    student_ids = fields.Many2many('student.registration', string='Student', domain="[ ('state', '=', 'registration')]")
+    student_ids = fields.Many2many('student.registration', string='Student',
+                                   domain="[ ('state', '=', 'registration')]")
     start_date = fields.Date(string='Start Date')
     end_date = fields.Date(string='End Date')
 
@@ -39,12 +40,12 @@ class LeaveReportWizard(models.TransientModel):
             'type': self.type
         }
 
-        print(data)
         return self.env.ref(
             'school_management.action_leave_report').report_action(
             None, data=data)
 
     def action_report_xlx_leave(self):
+        """ This is used to fetch data using query """
         query = """SELECT sl.start_date, sl.end_date , sl.total_days, sl.reason, sr.first_name AS student_name,
         sr.sequence AS sequence,sr.id as student_id,sr.email as email, sc.name AS class_name, sc.id as class_id FROM student_leave sl 
         JOIN student_registration sr ON sr.id = sl.student_id JOIN student_class sc ON sc.id = sr.student_class_id"""
@@ -54,7 +55,7 @@ class LeaveReportWizard(models.TransientModel):
         if self.class_ids.ids:
             query += " AND sr.student_class_id IN %s"
             params.append(tuple(self.class_ids.ids))
-            print(query)
+
         elif self.student_ids.ids:
             query += " AND sl.student_id IN %s"
             params.append(tuple(self.student_ids.ids))
@@ -74,7 +75,7 @@ class LeaveReportWizard(models.TransientModel):
         elif self.start_date and not self.end_date:
             query += "where start_date >= '%s' and end_date <= '%s'" % (
                 self.start_date, date.today())
-            print(query)
+
         elif self.end_date and not self.start_date:
             query += "where end_date <= '%s'" % self.end_date
 
@@ -86,7 +87,8 @@ class LeaveReportWizard(models.TransientModel):
             raise ValidationError("No related report found")
 
         data = {
-            'result': report
+            'result': report,
+            'date': self.read()[0]
         }
 
         return {
@@ -102,12 +104,14 @@ class LeaveReportWizard(models.TransientModel):
         }
 
     def get_xlsx_report(self, data, response):
+
         report = data.get('result', [])
+        result = data.get('date', [])
+        print('res', result)
         print(report)
         student_ids = list(set(record['student_id'] for record in report))
         print(student_ids)
         class_ids = list(set(record['student_id'] for record in report))
-        print('hello', report)
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         sheet = workbook.add_worksheet()
@@ -115,6 +119,8 @@ class LeaveReportWizard(models.TransientModel):
             {'align': 'center', 'bold': True, 'font_size': '14px'})
 
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
+        sub_head = workbook.add_format(
+            {'font_size': '15px', 'align': 'center', 'font_color': '#333333'})
 
         sheet.merge_range('B1:I3', 'LEAVE REPORT', head)
         sheet.set_column('A:A', 15)
@@ -126,72 +132,91 @@ class LeaveReportWizard(models.TransientModel):
         sheet.set_column('H:H', 15)
         sheet.set_column('G:G', 15)
 
-        if len(student_ids) == 1 :
-            print('djjd')
-            student_name = report[0].get('student_name')
-            class_name = report[0].get('class_name')
-            print(student_name)
-            sheet.merge_range('A4:D4', 'Student: ' + student_name, txt)
-            sheet.merge_range('A5:D5', 'Class: ' + class_name, txt)
-            sheet.write('D7', 'SL NO', head)
-            sheet.write('E7', 'Start Date', head)
-            sheet.write('F7', 'End Date', head)
-            sheet.write('G7', 'Total', head)
-            sheet.write('H7', 'Reason', head)
+        if result.get('type') == 'student':
+            print('checkkkk')
+            if len(student_ids) == 1:
 
-            index = 1
-            row = 7
-            for record in report:
-                sheet.write(row, 3, index, txt)
-                sheet.write(row, 4, str(record.get('start_date', '')), txt)
-                sheet.write(row, 5, str(record.get('end_date', '')), txt)
-                sheet.write(row, 6, record.get('total_days', ''), txt)
-                sheet.write(row, 7, record.get('reason', ''), txt)
-                row += 1
-                index += 1
+                student_name = report[0].get('student_name')
+                class_name = report[0].get('class_name')
+                print(student_name)
+                sheet.merge_range('A4:D4', 'Student: ' + student_name, sub_head)
+                sheet.merge_range('A5:D5', 'Class: ' + class_name, sub_head)
+                sheet.write('D7', 'SL NO', head)
+                sheet.write('E7', 'Start Date', head)
+                sheet.write('F7', 'End Date', head)
+                sheet.write('G7', 'Total', head)
+                sheet.write('H7', 'Reason', head)
 
-        elif len(class_ids) == 1:
-            print('3')
-            class_name = report[0].get('class_name')
-            sheet.merge_range('A5:D5', 'Class: ' + class_name, txt)
-            sheet.write('A7', 'R.NO', head)
-            sheet.write('B7', 'Student ', head)
-            sheet.write('C7', 'Start Date', head)
-            sheet.write('D7', 'End Date', head)
-            sheet.write('E7', 'Total', head)
-            sheet.write('F7', 'Reason', head)
-            row = 7
-            for record in report:
-                sheet.write(row, 0, str(record.get('sequence', '')), txt)
-                sheet.write(row, 1, str(record.get('student_name', '')), txt)
-                sheet.write(row, 2, str(record.get('start_date', '')), txt)
-                sheet.write(row, 3, str(record.get('end_date', '')), txt)
-                sheet.write(row, 4, record.get('total_days', ''), txt)
-                sheet.write(row, 5, record.get('reason', ''), txt)
-                row += 1
+                index = 1
+                row = 7
+                for record in report:
+                    sheet.write(row, 3, index, txt)
+                    sheet.write(row, 4, str(record.get('start_date', '')), txt)
+                    sheet.write(row, 5, str(record.get('end_date', '')), txt)
+                    sheet.write(row, 6, record.get('total_days', ''), txt)
+                    sheet.write(row, 7, record.get('reason', ''), txt)
+                    row += 1
+                    index += 1
+            else:
+                print('2')
+                sheet.write('A7', 'R.NO', head)
+                sheet.write('B7', 'Student ', head)
+                sheet.write('C7', 'Class ', head)
+                sheet.write('D7', 'Start Date', head)
+                sheet.write('E7', 'End Date', head)
+                sheet.write('F7', 'Total', head)
+                sheet.write('G7', 'Reason', head)
+
+                row = 7
+                for record in report:
+                    sheet.write(row, 0, str(record.get('sequence', '')), txt)
+                    sheet.write(row, 1, record.get('student_name', ''), txt)
+                    sheet.write(row, 2, record.get('class_name', ''), txt)
+                    sheet.write(row, 3, str(record.get('start_date', '')), txt)
+                    sheet.write(row, 4, str(record.get('end_date', '')), txt)
+                    sheet.write(row, 5, record.get('total_days', ''), txt)
+                    sheet.write(row, 6, record.get('reason', ''), txt)
+                    row += 1
         else:
-            print('2')
-            # sheet.write('A7', 'SL NO', head)
+            if len(class_ids) == 1:
+                print('3')
+                class_name = report[0].get('class_name')
+                sheet.merge_range('A5:D5', 'Class: ' + class_name, sub_head)
+                sheet.write('A7', 'R.NO', head)
+                sheet.write('B7', 'Student ', head)
+                sheet.write('C7', 'Start Date', head)
+                sheet.write('D7', 'End Date', head)
+                sheet.write('E7', 'Total', head)
+                sheet.write('F7', 'Reason', head)
+                row = 7
+                for record in report:
+                    sheet.write(row, 0, str(record.get('sequence', '')), txt)
+                    sheet.write(row, 1, str(record.get('student_name', '')),
+                                txt)
+                    sheet.write(row, 2, str(record.get('start_date', '')), txt)
+                    sheet.write(row, 3, str(record.get('end_date', '')), txt)
+                    sheet.write(row, 4, record.get('total_days', ''), txt)
+                    sheet.write(row, 5, record.get('reason', ''), txt)
+                    row += 1
+            else:
+                sheet.write('A7', 'R.NO', head)
+                sheet.write('B7', 'Student ', head)
+                sheet.write('C7', 'Class ', head)
+                sheet.write('D7', 'Start Date', head)
+                sheet.write('E7', 'End Date', head)
+                sheet.write('F7', 'Total', head)
+                sheet.write('G7', 'Reason', head)
 
-            sheet.write('A7', 'R.NO', head)
-            sheet.write('B7', 'Student ', head)
-            sheet.write('C7', 'Class ', head)
-            sheet.write('D7', 'Start Date', head)
-            sheet.write('E7', 'End Date', head)
-            sheet.write('F7', 'Total', head)
-            sheet.write('G7', 'Reason', head)
-
-            row = 7
-            for record in report:
-                # sheet.write(row, 0, index, txt)
-                sheet.write(row, 0, str(record.get('sequence', '')), txt)
-                sheet.write(row, 1, record.get('student_name', ''), txt)
-                sheet.write(row, 2, record.get('class_name', ''), txt)
-                sheet.write(row, 3, str(record.get('start_date', '')), txt)
-                sheet.write(row, 4, str(record.get('end_date', '')), txt)
-                sheet.write(row, 5, record.get('total_days', ''), txt)
-                sheet.write(row, 6, record.get('reason', ''), txt)
-                row += 1
+                row = 7
+                for record in report:
+                    sheet.write(row, 0, str(record.get('sequence', '')), txt)
+                    sheet.write(row, 1, record.get('student_name', ''), txt)
+                    sheet.write(row, 2, record.get('class_name', ''), txt)
+                    sheet.write(row, 3, str(record.get('start_date', '')), txt)
+                    sheet.write(row, 4, str(record.get('end_date', '')), txt)
+                    sheet.write(row, 5, record.get('total_days', ''), txt)
+                    sheet.write(row, 6, record.get('reason', ''), txt)
+                    row += 1
 
         workbook.close()
         output.seek(0)

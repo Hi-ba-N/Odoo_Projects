@@ -23,14 +23,12 @@ class SchoolManagementExamReport(models.AbstractModel):
                       JOIN student_registration sr ON sr.student_class_id = sc.id
                       WHERE sr.id IN %s"""
             params.append(tuple(data['student_ids']))
-            print(query)
             print(tuple(params))
         elif data['class_ids']:
             print('')
             query = """SELECT se.name as exam_name, sc.name as class_name,sc.id as class_id
                       FROM student_exams se
                       JOIN student_class sc ON se.class_id = sc.id
-
                       WHERE sc.id IN %s
                                   """
             params.append(tuple(data['class_ids']))
@@ -53,8 +51,8 @@ class SchoolManagementExamReport(models.AbstractModel):
             raise ValidationError("No related report found")
 
         return {
-            'doc_ids': docids,
-            'doc_model': 'leave.report.wizard',
-            'data': data,
-            'report': report
-        }
+                'doc_ids': docids,
+                'doc_model': 'leave.report.wizard',
+                'data': data,
+                'report': report
+            }

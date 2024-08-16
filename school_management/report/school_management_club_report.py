@@ -39,7 +39,7 @@ class SchoolManagementClubReport(models.AbstractModel):
             params.append(tuple(data['club_ids']))
 
         self.env.cr.execute(query, params)
-        self.env['sale.order']
+
         report = self.env.cr.dictfetchall()
 
         print(report)

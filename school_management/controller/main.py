@@ -10,7 +10,7 @@ class XLSXReportController(http.Controller):
 
     @http.route('/xlsx_reports', type='http', auth='user', methods=['POST'],
                 csrf=False)
-    def get_report_xlsx(self, model, options, output_format, **kw):
+    def get_report_xlsx(self, model, options, output_format,report_name ):
         """
         Generate an XLSX report based on the provided data and return it as a
         response.
@@ -26,7 +26,7 @@ class XLSXReportController(http.Controller):
                     headers=[
                         ('Content-Type', 'application/vnd.ms-excel'),
                         ('Content-Disposition',
-                         content_disposition('Excel Report' + '.xlsx'))
+                         content_disposition(report_name + '.xlsx'))
                     ]
                 )
                 report_obj.get_xlsx_report(options, response)

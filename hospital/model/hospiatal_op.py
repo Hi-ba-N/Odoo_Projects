@@ -28,3 +28,9 @@ class HospitalOp(models.Model):
     # check=self.env['sale.order'].search([('amount_total', '>=', 500)]).read(['partner_id','name','amount_total'])
     # print(check)
 
+    # Join
+    # student_class
+    # sq
+    # on
+    # sr.id = student_class_id
+
