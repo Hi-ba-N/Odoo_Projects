@@ -104,7 +104,6 @@ class LeaveReportWizard(models.TransientModel):
         }
 
     def get_xlsx_report(self, data, response):
-
         report = data.get('result', [])
         result = data.get('date', [])
         print('res', result)
@@ -120,18 +119,10 @@ class LeaveReportWizard(models.TransientModel):
 
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
         sub_head = workbook.add_format(
-            {'font_size': '15px', 'align': 'center', 'font_color': '#333333'})
+            {'font_size': '13px', 'align': 'center', 'font_color': '#333333'})
 
         sheet.merge_range('B1:I3', 'LEAVE REPORT', head)
-        sheet.set_column('A:A', 15)
-        sheet.set_column('B:B', 15)
-        sheet.set_column('C:C', 15)
-        sheet.set_column('D:D', 15)
-        sheet.set_column('E:E', 15)
-        sheet.set_column('F:F', 15)
-        sheet.set_column('H:H', 15)
-        sheet.set_column('G:G', 15)
-
+        sheet.set_column('A:H', 20)
         if result.get('type') == 'student':
             print('checkkkk')
             if len(student_ids) == 1:
@@ -141,24 +132,24 @@ class LeaveReportWizard(models.TransientModel):
                 print(student_name)
                 sheet.merge_range('A4:D4', 'Student: ' + student_name, sub_head)
                 sheet.merge_range('A5:D5', 'Class: ' + class_name, sub_head)
-                sheet.write('D7', 'SL NO', head)
-                sheet.write('E7', 'Start Date', head)
-                sheet.write('F7', 'End Date', head)
-                sheet.write('G7', 'Total', head)
-                sheet.write('H7', 'Reason', head)
+                sheet.write('A8', 'SL NO', head)
+                sheet.write('B8', 'Start Date', head)
+                sheet.write('C8', 'End Date', head)
+                sheet.write('D8', 'Total', head)
+                sheet.write('E8', 'Reason', head)
 
                 index = 1
-                row = 7
+                row = 8
                 for record in report:
-                    sheet.write(row, 3, index, txt)
-                    sheet.write(row, 4, str(record.get('start_date', '')), txt)
-                    sheet.write(row, 5, str(record.get('end_date', '')), txt)
-                    sheet.write(row, 6, record.get('total_days', ''), txt)
-                    sheet.write(row, 7, record.get('reason', ''), txt)
+                    sheet.write(row, 0, index, txt)
+                    sheet.write(row, 1, str(record.get('start_date', '')), txt)
+                    sheet.write(row, 2, str(record.get('end_date', '')), txt)
+                    sheet.write(row, 3, record.get('total_days', ''), txt)
+                    sheet.write(row, 4, record.get('reason', ''), txt)
                     row += 1
                     index += 1
             else:
-                print('2')
+
                 sheet.write('A7', 'R.NO', head)
                 sheet.write('B7', 'Student ', head)
                 sheet.write('C7', 'Class ', head)

@@ -88,7 +88,6 @@ class ClassReportWizard(models.TransientModel):
         result = data.get('date', [])
         print(report)
         student_ids = list(set(record['student_id'] for record in report))
-        print(student_ids)
         class_ids = list(set(record['class_id'] for record in report))
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
@@ -100,33 +99,27 @@ class ClassReportWizard(models.TransientModel):
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
 
         sheet.merge_range('B1:I3', 'CLASS REPORT', head)
-        sheet.set_column('A:A', 15)
-        sheet.set_column('B:B', 15)
-        sheet.set_column('C:C', 15)
-        sheet.set_column('D:D', 15)
-        sheet.set_column('E:E', 15)
-        sheet.set_column('F:F', 15)
-        sheet.set_column('H:H', 15)
-        sheet.set_column('G:G', 15)
-
+        sheet.set_column('A:G', 25)
         if result.get('type') == 'student':
             if len(student_ids) == 1:
                 print('hiiiii')
                 student_name = report[0].get('student_name')
                 print(student_name)
                 sheet.merge_range('A4:D4', 'Student: ' + student_name, sub_head)
-                sheet.write('D7', 'SL NO', head)
-                sheet.write('E7', 'R NO', head)
-                sheet.write('F7', 'Class', head)
-                sheet.write('G7', 'School', head)
+                sheet.write('A8', 'SL NO', head)
+                sheet.write('B8', 'R NO', head)
+                sheet.write('C8', 'Email', head)
+                sheet.write('D8', 'Class', head)
+                sheet.write('E8', 'School', head)
 
                 index = 1
-                row = 7
+                row = 8
                 for record in report:
-                    sheet.write(row, 3, index, txt)
-                    sheet.write(row, 4, record.get('sequence', ''), txt)
-                    sheet.write(row, 5, record.get('class_name', ''), txt)
-                    sheet.write(row, 6, record.get('school', ''), txt)
+                    sheet.write(row, 0, index, txt)
+                    sheet.write(row, 1, record.get('sequence', ''), txt)
+                    sheet.write(row, 2, record.get('email', ''), txt)
+                    sheet.write(row, 3, record.get('class_name', ''), txt)
+                    sheet.write(row, 4, record.get('school', ''), txt)
 
                     row += 1
                     index += 1
@@ -155,20 +148,20 @@ class ClassReportWizard(models.TransientModel):
             if len(class_ids) == 1:
                 class_name = report[0].get('class_name')
                 sheet.merge_range('A4:D4', 'Class: ' + class_name, sub_head)
-                sheet.write('D7', 'SL NO', head)
-                sheet.write('E7', 'R NO', head)
-                sheet.write('F7', 'Student', head)
-                sheet.write('G7', 'Email', head)
-                sheet.write('H7', 'School', head)
+                sheet.write('A8', 'SL NO', head)
+                sheet.write('B8', 'R NO', head)
+                sheet.write('C8', 'Student', head)
+                sheet.write('D8', 'Email', head)
+                sheet.write('E8', 'School', head)
 
                 index = 1
-                row = 7
+                row = 8
                 for record in report:
-                    sheet.write(row, 3, index, txt)
-                    sheet.write(row, 4, record.get('sequence', ''), txt)
-                    sheet.write(row, 5, record.get('student_name', ''), txt)
-                    sheet.write(row, 6, record.get('email', ''), txt)
-                    sheet.write(row, 7, record.get('school', ''), txt)
+                    sheet.write(row, 0, index, txt)
+                    sheet.write(row, 1, record.get('sequence', ''), txt)
+                    sheet.write(row, 2, record.get('student_name', ''), txt)
+                    sheet.write(row, 3, record.get('email', ''), txt)
+                    sheet.write(row, 4, record.get('school', ''), txt)
                     row += 1
                     index += 1
             else:
