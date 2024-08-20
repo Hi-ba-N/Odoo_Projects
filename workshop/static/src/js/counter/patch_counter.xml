@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+<t t-name="workshop.Patch" t-inherit="workshop.Counter"
+  t-inherit-mode="extension">
+	<xpath expr="//button[hasclass('btn-primary')]" position="after" >
+        <button class="btn btn-danger me-2" t-on-click="clear">Clear</button>
+</xpath>
+
+
+</t>
+
+
+</templates>

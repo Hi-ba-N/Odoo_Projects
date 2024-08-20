@@ -1,46 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="tmp_register_form" name="Registration Form">
+    <template id="tmp_event_form" name="Event Form">
         <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container">
-                    <div class="col-md-12">
-                       <form action="/register/form/submit">
-
-                            <div class="form-group" >
-                                <label for="name">First Name</label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" required="true" />
+         <t t-set="club"
+             t-value="request.env['student.club'].sudo().search([])"/>
+            <div class="container">
+                <h3>Event</h3>
+                <form action="/event/submit" >
+                    <div class="s_website_form_rows row s_col_no_bgcolor">
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="event">
+                                    <span class="s_website_form_label_content">
+                                        Event
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="event" type="text"
+                                           class="form-control s_website_form_input"
+                                           name="event"/>
+                                </div>
                             </div>
-                           <div class="form-group" >
-                                <label for="name">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" required="true" />
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="club">
+                                    <span class="s_website_form_label_content">
+                                        Club
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <select id="club" name="club" class="form-control">
+                        <t t-foreach="club" t-as="cl">
+                            <option t-att-value="cl.id" t-esc="cl.name"/>
+                        </t>
+                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" name="email"
-                                 id="email" required="true"/>
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="start date">
+                                    <span class="s_website_form_label_content">
+                                        Start Date
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="start date" type="date"
+                                           class="form-control s_website_form_input"
+                                           name="start date"/>
+                                </div>
                             </div>
-                            <div class="form-group" >
-                                <label for="phone">Phone</label>
-                                <input type="phone" class="form-control" name="phone"
-                                 id="phone" required="true" />
+                        </div>
+                         <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="end date">
+                                    <span class="s_website_form_label_content">
+                                        End Date
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="end date" type="date"
+                                           class="form-control s_website_form_input"
+                                           name="end date"/>
+                                </div>
                             </div>
-                           <div class="form-group" >
-                                <label for="dob">Dob</label>
-                                <input type="date" class="form-control" name="dob"
-                                 id="dob" required="true" />
-                            </div>
-
-                           <br/>
-                           <div>
-                               <center>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                               </center>
-                           </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-              </div>
-          </t>
+<br/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </t>
     </template>
 </odoo>

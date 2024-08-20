@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="workshop.Parent">
+        <div class="container text-center">
+            <h1>Parent Component</h1>
+            <Child sampleProps="name"/>
+        </div>
+    </t>
+</templates>

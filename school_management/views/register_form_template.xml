@@ -2,45 +2,99 @@
 <odoo>
     <template id="tmp_register_form" name="Registration Form">
         <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container">
-                    <div class="col-md-12">
-                       <form action="/register/form/submit">
 
-                            <div class="form-group" >
-                                <label for="name">First Name</label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" required="true" />
+            <div class="container">
+                <h3>Register</h3>
+                <form action="/register/form/submit">
+                    <div class="s_website_form_rows row s_col_no_bgcolor">
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="first_name">
+                                    <span class="s_website_form_label_content">
+                                        First Name
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="first_name" type="text"
+                                           class="form-control s_website_form_input"
+                                           name="first_name" required="true"/>
+                                </div>
                             </div>
-                           <div class="form-group" >
-                                <label for="name">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" required="true" />
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="last_name">
+                                    <span class="s_website_form_label_content">
+                                        Last Name
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="last_name" type="text"
+                                           class="form-control s_website_form_input"
+                                           name="last_name" required="true"/>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" name="email"
-                                 id="email" required="true"/>
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="email">
+                                    <span class="s_website_form_label_content">
+                                        Email
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="email" type="text"
+                                           class="form-control s_website_form_input"
+                                           name="email" required="true"/>
+                                </div>
                             </div>
-                            <div class="form-group" >
-                                <label for="phone">Phone</label>
-                                <input type="phone" class="form-control" name="phone"
-                                 id="phone" required="true" />
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="phone">
+                                    <span class="s_website_form_label_content">
+                                        Phone
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="phone" type="text"
+                                           class="form-control s_website_form_input"
+                                           name="phone" required="true"/>
+                                </div>
                             </div>
-                           <div class="form-group" >
-                                <label for="dob">Dob</label>
-                                <input type="date" class="form-control" name="dob"
-                                 id="dob" required="true" />
+                        </div>
+                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                       style="width: 150px" for="dob">
+                                    <span class="s_website_form_label_content">
+                                        Phone
+                                    </span>
+                                </label>
+                                <div class="col-sm">
+                                    <input id="dob" type="date"
+                                           class="form-control s_website_form_input"
+                                           name="dob" required="true"/>
+                                </div>
                             </div>
+                        </div>
 
-                           <br/>
-                           <div>
-                               <center>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                               </center>
-                           </div>
-                        </form>
+
+                        <br/>
+
+                        <center>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </center>
                     </div>
-                </div>
-              </div>
-          </t>
+                </form>
+            </div>
+
+        </t>
     </template>
 </odoo>

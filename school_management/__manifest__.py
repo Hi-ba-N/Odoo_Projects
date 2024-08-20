@@ -48,8 +48,13 @@
         'report/ir_actions_report.xml',
         'views/register_form_template.xml',
         'views/register_form_success_template.xml',
+        'views/register_tree_template.xml',
         'views/leave_form_template.xml',
-        'views\event_form_template.xml',
+        'views/leave_form_success_template.xml',
+        'views/leave_tree_template.xml',
+        'views/event_form_template.xml',
+        'views/event_form_success_template.xml',
+        'views/event_tree_template.xml',
          'views/website_menus.xml'
 
     ],
