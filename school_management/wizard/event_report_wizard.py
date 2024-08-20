@@ -71,7 +71,6 @@ class EventReportWizard(models.TransientModel):
         if not report:
             print('no result')
             raise ValidationError("No related report found")
-        print(report)
 
         data = {
             'result': report,
@@ -91,9 +90,8 @@ class EventReportWizard(models.TransientModel):
         }
 
     def get_xlsx_report(self, data, response):
-        """"""
         report = data.get('result', [])
-        result = data.get('date', [])
+        # result = data.get('date', [])
         print('rep', report)
         club_ids = list(set(record['club_id'] for record in report))
         print(club_ids)
@@ -105,59 +103,51 @@ class EventReportWizard(models.TransientModel):
 
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
         sub_head = workbook.add_format(
-            {'font_size': '15px', 'align': 'center', 'font_color': '#333333'})
+            {'font_size': '12px', 'align': 'center', 'font_color': '#333333'})
 
-        sheet.merge_range('E1:I3', 'EVENT REPORT', head)
-        sheet.set_column('A:A', 15)
-        sheet.set_column('B:B', 15)
-        sheet.set_column('C:C', 15)
-        sheet.set_column('D:D', 15)
-        sheet.set_column('E:E', 15)
-        sheet.set_column('F:F', 15)
-        sheet.set_column('G:G', 15)
-        sheet.set_column('H:H', 15)
-        sheet.set_column('I:I', 15)
+        sheet.merge_range('B1:I3', 'EVENT REPORT', head)
+        sheet.set_column('A:H', 25)
 
         if len(club_ids) == 1:
             print('djjd')
             club_name = report[0].get('club_name')
             print(club_name)
             sheet.merge_range('A5:E5', 'Club: ' + club_name, sub_head)
-            sheet.write('D7', 'SL NO', head)
-            sheet.write('E7', 'Event', head)
-            sheet.write('F7', 'Start Date', head)
-            sheet.write('G7', 'End Date', head)
-            sheet.write('H7', 'Venue', head)
+            sheet.write('A8', 'SL NO', head)
+            sheet.write('B8', 'Event', head)
+            sheet.write('C8', 'Start Date', head)
+            sheet.write('D8', 'End Date', head)
+            sheet.write('E8', 'Venue', head)
 
             index = 1
-            row = 7
+            row = 8
             for record in report:
-                sheet.write(row, 3, index, txt)
-                sheet.write(row, 4, record.get('name', ''), txt)
-                sheet.write(row, 5, str(record.get('start_date', '')), txt)
-                sheet.write(row, 6, str(record.get('end_date', '')), txt)
-                sheet.write(row, 7, record.get('venue', ''), txt)
+                sheet.write(row, 0, index, txt)
+                sheet.write(row, 1, record.get('name', ''), txt)
+                sheet.write(row, 2, str(record.get('start_date', '')), txt)
+                sheet.write(row, 3, str(record.get('end_date', '')), txt)
+                sheet.write(row, 4, record.get('venue', ''), txt)
 
                 row += 1
                 index += 1
         elif len(club_ids) > 1:
             print('gggg')
-            sheet.write('D7', 'SL NO', head)
-            sheet.write('E7', 'Club', head)
-            sheet.write('F7', 'Event', head)
-            sheet.write('G7', 'Start Date', head)
-            sheet.write('H7', 'End Date', head)
-            sheet.write('I7', 'Venue', head)
+            sheet.write('A5', 'SL NO', head)
+            sheet.write('B5', 'Club', head)
+            sheet.write('C5', 'Event', head)
+            sheet.write('D5', 'Start Date', head)
+            sheet.write('E5', 'End Date', head)
+            sheet.write('F5', 'Venue', head)
 
             index = 1
-            row = 7
+            row = 5
             for record in report:
-                sheet.write(row, 3, index, txt)
-                sheet.write(row, 4, record.get('club_name', ''), txt)
-                sheet.write(row, 5, record.get('name', ''), txt)
-                sheet.write(row, 6, str(record.get('start_date', '')), txt)
-                sheet.write(row, 7, str(record.get('end_date', '')), txt)
-                sheet.write(row, 8, record.get('venue', ''), txt)
+                sheet.write(row, 0, index, txt)
+                sheet.write(row, 1, record.get('club_name', ''), txt)
+                sheet.write(row, 2, record.get('name', ''), txt)
+                sheet.write(row, 3, str(record.get('start_date', '')), txt)
+                sheet.write(row, 4, str(record.get('end_date', '')), txt)
+                sheet.write(row, 5, record.get('venue', ''), txt)
                 row += 1
                 index += 1
 

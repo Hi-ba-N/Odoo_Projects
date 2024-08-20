@@ -16,7 +16,7 @@ class StudentRegistration(models.Model):
 
     sequence = fields.Char(default='New', readonly=True)
     first_name = fields.Char("First Name", required=True)
-    last_name = fields.Char("Last Name", required=True)
+    last_name = fields.Char("Last Name")
     father = fields.Char("Father")
     mother = fields.Char("Mother")
     address = fields.Char("Communication Address")

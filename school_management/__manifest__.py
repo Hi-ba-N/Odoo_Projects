@@ -2,7 +2,7 @@
     'name': "School Management",
     'version': '17.0.6.0.0',
     'depends': ['base',
-                'mail', 'sale'],
+                'mail', 'sale','website'],
     'author': "Hiba",
     'category': 'Category',
     'description': "School Management",
@@ -46,6 +46,11 @@
         'report/exam_report.xml',
         'views/student_menus.xml',
         'report/ir_actions_report.xml',
+        'views/register_form_template.xml',
+        'views/register_form_success_template.xml',
+        'views/leave_form_template.xml',
+        'views\event_form_template.xml',
+         'views/website_menus.xml'
 
     ],
 'assets': {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="tmp_register_form" name="Registration Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                       <form action="/register/form/submit">
+
+                            <div class="form-group" >
+                                <label for="name">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" required="true" />
+                            </div>
+                           <div class="form-group" >
+                                <label for="name">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" required="true" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email"
+                                 id="email" required="true"/>
+                            </div>
+                            <div class="form-group" >
+                                <label for="phone">Phone</label>
+                                <input type="phone" class="form-control" name="phone"
+                                 id="phone" required="true" />
+                            </div>
+                           <div class="form-group" >
+                                <label for="dob">Dob</label>
+                                <input type="date" class="form-control" name="dob"
+                                 id="dob" required="true" />
+                            </div>
+
+                           <br/>
+                           <div>
+                               <center>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                               </center>
+                           </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+    </template>
+</odoo>

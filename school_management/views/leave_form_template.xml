@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="tmp_leave_form" name="Leave Form">
+      <t t-call="website.layout">
+<!--          <t t-set="students"-->
+<!--             t-value="request.env['student.registration'].sudo.search([])"/>-->
+        <div class="container">
+            <h1>Leave Request</h1>
+            <form action="/contactus/submit" method="post">
+                <div class="form-group" >
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" id="name" required="true" />
+                            </div>
+                           <div class="form-group" >
+                                <label for="class">Class</label>
+                                <input type="text" class="form-control" name="class" id="name" required="true" />
+                            </div>
+                            <div class="form-group">
+                                <label for="start date">Start Date</label>
+                                <input type="date" class="form-control" name="start date"
+                                 id="start date" required="true"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="end date">End Date</label>
+                                <input type="date" class="form-control" name="end date"
+                                 id="end date" required="true"/>
+                            </div>
+                            <div class="form-group">
+                                            <label for="reason">Reason</label>
+                                            <input type="Text" class="form-control" name="reason"
+                                             id="reason" required="true"/>
+                                        </div>
+<!--                <div class="form-group">-->
+<!--                    <select id="student_id" name="student_id" class="form-control">-->
+<!--                        <t t-foreach="students" t-as="student">-->
+<!--                            <option t-att-value="*product.id" t-esc="student.first_name"/>-->
+<!--                        </t>-->
+<!--                    </select>-->
+<!--                </div>-->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </t>
+    </template>
+</odoo>

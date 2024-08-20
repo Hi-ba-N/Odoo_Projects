@@ -104,17 +104,10 @@ class ExamReportWizard(models.TransientModel):
 
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
         sub_head = workbook.add_format(
-            {'font_size': '15px', 'align': 'center', 'font_color': '#333333'})
+            {'font_size': '12px', 'align': 'center', 'font_color': '#333333'})
 
         sheet.merge_range('B1:I3', 'EXAM REPORT', head)
-        sheet.set_column('A:A', 15)
-        sheet.set_column('B:B', 15)
-        sheet.set_column('C:C', 15)
-        sheet.set_column('D:D', 15)
-        sheet.set_column('E:E', 15)
-        sheet.set_column('F:F', 15)
-        sheet.set_column('H:H', 15)
-        sheet.set_column('G:G', 15)
+        sheet.set_column('A:G', 20)
         if result.get('type') == 'student':
             if len(student_ids) == 1:
                 print('stddd')
@@ -124,12 +117,12 @@ class ExamReportWizard(models.TransientModel):
                 sheet.merge_range('A4:D4', 'Student:  ' + student_name,
                                   sub_head)
                 sheet.merge_range('A5:D5', 'Class:  ' + class_name, sub_head)
-                sheet.write('A7', 'SL NO', head)
-                sheet.write('B7', 'Exam', head)
-                sheet.write('C7', 'Subject', head)
+                sheet.write('A8', 'SL NO', head)
+                sheet.write('B8', 'Exam', head)
+                sheet.write('C8', 'Subject', head)
 
                 index = 1
-                row = 7
+                row = 8
                 for record in report:
                     sheet.write(row, 0, index, txt)
                     sheet.write(row, 1, record.get('exam_name', ''), txt)
@@ -138,6 +131,7 @@ class ExamReportWizard(models.TransientModel):
                     index += 1
 
             else:
+                print('first else')
                 sheet.write('A7', 'SL.NO', head)
                 sheet.write('B7', 'R.NO', head)
                 sheet.write('C7', 'Student ', head)
@@ -180,6 +174,7 @@ class ExamReportWizard(models.TransientModel):
                     row += 1
                     index += 1
             else:
+                print('second else')
                 sheet.write('A7', 'SL.NO', head)
                 sheet.write('B7', 'R.NO', head)
                 sheet.write('C7', 'Student ', head)
@@ -198,7 +193,7 @@ class ExamReportWizard(models.TransientModel):
 
                     row += 1
                     index += 1
-        elif result.get('type') == 'exam':
+        else:
             if len(exam_ids) == 1:
                 print('exaaam')
                 exam_name = report[0].get('exam_name')
