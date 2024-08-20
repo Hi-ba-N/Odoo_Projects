@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="parent_view_action" model="ir.actions.client">
+        <field name="name">Parent Child Component</field>
+        <field name="tag">parent</field>
+    </record>
+
+    <record id="counter_view_action" model="ir.actions.client">
+        <field name="name">Counter Component</field>
+        <field name="tag">counter</field>
+    </record>
+
+    <record id="lch_view_action" model="ir.actions.client">
+        <field name="name">Life Cycle Hooks</field>
+        <field name="tag">life_cycle_hooks</field>
+    </record>
+
+
+    <record id="sample_service_action" model="ir.actions.client">
+        <field name="name">Services</field>
+        <field name="tag">sample_service</field>
+    </record>
+     <record id="sample_extend_action" model="ir.actions.client">
+        <field name="name">Services</field>
+        <field name="tag">counter_extend</field>
+    </record>
+ <record id="sample_use_effect_action" model="ir.actions.client">
+        <field name="name">Use Effect</field>
+        <field name="tag">use_effect</field>
+    </record>
+
+    <menuitem id="workshop_menu" name="Workshop"/>
+    <menuitem id="parent_child" parent="workshop_menu" name="Parent Child Component" action="parent_view_action"/>
+    <menuitem id="counter" parent="workshop_menu" name="Counter Component" action="counter_view_action"/>
+    <menuitem id="lch" parent="workshop_menu" name="Life Cycle Hooks" action="lch_view_action"/>
+    <menuitem id="service_menu" parent="workshop_menu" name="Services" action="sample_service_action"/>
+    <menuitem id="extend_menu" parent="workshop_menu" name="Counter Extend" action="sample_extend_action"/>
+    <menuitem id="use_effect_menu" parent="workshop_menu" name="Use Effect" action="sample_use_effect_action"/>
+
+</odoo>

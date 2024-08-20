@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="tmp_register_tree" name="Register Tree">
+        <t t-call="portal.portal_layout">
+         <form action="/register/form">
+             <button type="submit" class="btn btn-primary">Register</button>
+</form>
+        <div class="page">
+            <div class="container">
+                <br/>
+                <table class="table-striped table">
+                    <thead style="font-size:22px">
+                        <tr>
+                            <th>Sequence</th>
+                            <th>Student</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="record" t-as="rec">
+                            <tr>
+                            <td><t t-esc="rec.sequence"/></td>
+                            <td><t t-esc="rec.first_name"/></td>
+                            <td><t t-esc="rec.email"/></td>
+                             <td><t t-esc="rec.phone"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        </t>
+</template>
+    </odoo>

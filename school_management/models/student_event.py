@@ -1,5 +1,6 @@
 # coding: utf-8
 from datetime import date, datetime, timedelta
+from email.policy import default
 
 from odoo import api, fields, models, exceptions
 from odoo.fields import Date
@@ -26,6 +27,7 @@ class StudentEvent(models.Model):
 
     ], string='Status', required=True,
         default='new')
+    is_website = fields.Boolean(default=False)
 
     def action_book(self):
         """This is used for button action  to change the state """

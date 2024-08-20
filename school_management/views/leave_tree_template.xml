@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="tmp_leave_tree" name="Leave Tree">
+        <t t-call="portal.portal_layout">
+         <form action="/leave/form">
+             <button type="submit" class="btn btn-primary">Create</button>
+</form>
+        <div class="page">
+            <div class="container">
+                <br/>
+                <table class="table-striped table">
+                    <thead style="font-size:22px">
+                        <tr>
+                            <th>Student</th>
+                            <th>Class</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="record" t-as="rec">
+                            <tr>
+                            <td><t t-esc="rec.student_id.first_name"/></td>
+                            <td><t t-esc="rec.class_id.name"/></td>
+                            <td><t t-esc="rec.start_date"/></td>
+                             <td><t t-esc="rec.end_date"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        </t>
+</template>
+    </odoo>

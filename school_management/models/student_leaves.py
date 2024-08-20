@@ -24,6 +24,7 @@ class StudentLeaves(models.Model):
                                 store=True)
     half_day = fields.Boolean("Half Day")
     reason = fields.Char("Reason", required=True)
+    is_website = fields.Boolean(default=False)
 
     @api.depends("start_date", "end_date")
     def _compute_total_days(self):

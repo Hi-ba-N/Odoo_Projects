@@ -57,6 +57,7 @@ class StudentRegistration(models.Model):
 
                                        )
     user_id = fields.Many2one('res.users', 'Users', readonly=True)
+    is_website = fields.Boolean(default=False)
 
     _sql_constraints = [
         ('aadhaar_uniq', 'unique(aadhaar)',

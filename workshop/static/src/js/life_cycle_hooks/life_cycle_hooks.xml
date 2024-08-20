@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="workshop.LifeCycleHooks">
+        <div class="container text-center ">
+            <h1>Life Cycle Hooks</h1>
+            <p class="text-muted">Check the console </p>
+            <h3>State</h3>
+            <h2>n=<t t-esc="state.n"/></h2>
+            <h2>flag=<t t-esc="state.flag"/></h2>
+
+            <button class="btn btn-secondary me-2" t-on-click="()=> state.n++">Increment State +1</button>
+            <button class="btn btn-info" t-on-click="toggleSubComponent">Toggle Sub Component</button>
+            <hr/>
+             <div t-if="state.flag">
+              <DemoSubComponent counter="state.n"/>
+            </div>
+        </div>
+    </t>
+</templates>

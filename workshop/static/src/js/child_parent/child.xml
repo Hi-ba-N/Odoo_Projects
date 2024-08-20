@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="workshop.Child">
+        <div class="container text-center bg-secondary">
+            <h1>Child Component</h1>
+            <p t-esc="props.sampleProps"/>
+        </div>
+    </t>
+</templates>

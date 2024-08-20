@@ -10,13 +10,13 @@
 
         <record id="menu_leave" model="website.menu">
             <field name="name">Leave</field>
-            <field name="url">/</field>
+            <field name="url">/leave</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">21</field>
         </record>
         <record id="menu_event" model="website.menu">
             <field name="name">Event</field>
-            <field name="url">/</field>
+            <field name="url">/event/</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">22</field>
         </record>

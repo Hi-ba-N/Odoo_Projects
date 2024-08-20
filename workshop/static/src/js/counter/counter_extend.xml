@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+<t t-name="workshop.CounterExtend" t-inherit="workshop.Counter"
+  t-inherit-mode="primary">
+	<xpath expr="//div" position="attributes">
+        <attribute name="class" add="bg-danger" separator=" "/>
+
+</xpath>
+
+
+</t>
+
+
+</templates>
