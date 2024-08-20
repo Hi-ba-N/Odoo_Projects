@@ -20,7 +20,11 @@
                     <tbody>
                         <t t-foreach="record" t-as="rec">
                             <tr>
-                            <td><t t-esc="rec.name"/></td>
+                            <td>
+                                        <a t-att-href="'/event/form?event_id=%d' % rec.id">
+                                            <t t-esc="rec.name"/>
+                                        </a>
+                                    </td>
                             <td><t t-esc="rec.club_id.name"/></td>
                             <td><t t-esc="rec.start_date"/></td>
                              <td><t t-esc="rec.end_date"/></td>

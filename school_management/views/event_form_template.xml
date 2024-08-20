@@ -19,7 +19,7 @@
                                 <div class="col-sm">
                                     <input id="event" type="text"
                                            class="form-control s_website_form_input"
-                                           name="event"/>
+                                           name="event" t-att-value="event.name if event else ''"/>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,9 @@
                                 <div class="col-sm">
                                     <select id="club" name="club" class="form-control">
                         <t t-foreach="club" t-as="cl">
-                            <option t-att-value="cl.id" t-esc="cl.name"/>
+                            <option t-att-value="cl.id"  t-att-selected="cl.id == event.club_id.id if event else False"
+                                    t-esc="cl.name"/>
+
                         </t>
                     </select>
                                 </div>
@@ -51,7 +53,7 @@
                                 <div class="col-sm">
                                     <input id="start date" type="date"
                                            class="form-control s_website_form_input"
-                                           name="start date"/>
+                                           name="start date" t-att-value="event.start_date if event else ''"/>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                                 <div class="col-sm">
                                     <input id="end date" type="date"
                                            class="form-control s_website_form_input"
-                                           name="end date"/>
+                                           name="end date" t-att-value="event.end_date if event else ''"/>
                                 </div>
                             </div>
                         </div>

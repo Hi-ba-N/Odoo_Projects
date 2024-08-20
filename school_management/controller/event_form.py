@@ -5,6 +5,7 @@ from odoo.http import request
 
 class EventForm(http.Controller):
     """This is for Event Controller"""
+
     @http.route(['/event/'], type='http', website=True)
     def event(self):
         """This is used searching event record that is created through website and render  tree template"""
@@ -15,12 +16,16 @@ class EventForm(http.Controller):
 
             'record': data
         }
-        return request.render("school_management.tmp_event_tree",values)
+        return request.render("school_management.tmp_event_tree", values)
 
     @http.route(['/event/form'], type='http', website=True)
-    def event_form(self):
+    def event_form(self, event_id=None):
         """This for rendering event form template"""
-        return request.render("school_management.tmp_event_form", {})
+        event = request.env['student.event'].sudo().browse(int(event_id)) if event_id else None
+
+        print(event)
+
+        return request.render("school_management.tmp_event_form", {'event': event})
 
     @http.route(['/event/submit'], type='http',
                 website=True)
@@ -33,13 +38,9 @@ class EventForm(http.Controller):
             'end_date': post.get('end date'),
             'is_website': True
 
-
         })
         vals = {
             'event': event,
         }
 
         return request.render("school_management.tmp_event_form_success", vals)
-
-
-
