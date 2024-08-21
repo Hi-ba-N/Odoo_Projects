@@ -20,9 +20,13 @@ class LeaveForm(http.Controller):
         return request.render("school_management.tmp_leave_tree", values)
 
     @http.route(['/leave/form'], type='http', website=True)
-    def leave_form(self):
+    def leave_form(self, leave_id=None):
         """This for rendering leave  form template"""
-        return request.render("school_management.tmp_leave_form")
+        print(leave_id)
+        leave = request.env['student.leave'].sudo().browse(
+            int(leave_id)) if leave_id else None
+
+        return request.render("school_management.tmp_leave_form", {'leave': leave})
 
     @http.route(['/leave/form/submit'], type='http',
                 website=True)
@@ -42,3 +46,4 @@ class LeaveForm(http.Controller):
 
         return request.render(
             "school_management.tmp_leave_form_success", vals)
+

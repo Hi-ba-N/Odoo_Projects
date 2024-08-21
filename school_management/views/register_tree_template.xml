@@ -18,9 +18,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="record" t-as="rec">
+                        <t t-foreach="student_details" t-as="rec">
                             <tr>
-                            <td><t t-esc="rec.sequence"/></td>
+                            <td>
+                                        <a t-att-href="'/register/form?register_id=%d' % rec.id">
+                                            <t t-esc="rec.sequence"/>
+                                        </a>
+                                    </td>
                             <td><t t-esc="rec.first_name"/></td>
                             <td><t t-esc="rec.email"/></td>
                              <td><t t-esc="rec.phone"/></td>
@@ -28,9 +32,22 @@
                         </t>
                     </tbody>
                 </table>
+
+            </div>
+            <br/>
+
+            <div class="products_pager form-inline justify-content-center mt-3">
+
+                <t t-call="website.pager">
+
+                </t>
+
             </div>
 
+
         </div>
+
+
         </t>
 </template>
     </odoo>

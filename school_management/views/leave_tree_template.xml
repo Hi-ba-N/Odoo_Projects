@@ -15,15 +15,23 @@
                             <th>Class</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Total Days</th>
+                            <th>Reason</th>
                         </tr>
                     </thead>
                     <tbody>
                         <t t-foreach="record" t-as="rec">
                             <tr>
-                            <td><t t-esc="rec.student_id.first_name"/></td>
+                            <td>
+                                        <a t-att-href="'/leave/form?leave_id=%d' % rec.id">
+                                            <t t-esc="rec.student_id.first_name"/>
+                                        </a>
+                                    </td>
                             <td><t t-esc="rec.class_id.name"/></td>
                             <td><t t-esc="rec.start_date"/></td>
                              <td><t t-esc="rec.end_date"/></td>
+                                <td><t t-esc="rec.total_days"/></td>
+                             <td><t t-esc="rec.reason"/></td>
                             </tr>
                         </t>
                     </tbody>

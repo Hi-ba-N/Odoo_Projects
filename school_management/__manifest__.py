@@ -60,7 +60,8 @@
     ],
 'assets': {
         'web.assets_backend': [
-            'school_management/static/src/js/action_manager.js'
+            'school_management/static/src/js/action_manager.js',
+            'school_management/static/src/js/date_validation.js'
 
         ],
     }
