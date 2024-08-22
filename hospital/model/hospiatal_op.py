@@ -34,3 +34,5 @@ class HospitalOp(models.Model):
     # // age--;
     # //}
 
+    # currentDate.setDate(currentDate.getDate() + 1);
+

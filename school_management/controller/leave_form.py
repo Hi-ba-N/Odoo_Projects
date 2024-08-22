@@ -22,7 +22,7 @@ class LeaveForm(http.Controller):
     @http.route(['/leave/form'], type='http', website=True)
     def leave_form(self, leave_id=None):
         """This for rendering leave  form template"""
-        print(leave_id)
+
         leave = request.env['student.leave'].sudo().browse(
             int(leave_id)) if leave_id else None
 

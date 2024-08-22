@@ -53,17 +53,25 @@
         'views/leave_form_success_template.xml',
         'views/leave_tree_template.xml',
         'views/event_form_template.xml',
-
         'views/event_form_success_template.xml',
         'views/event_tree_template.xml',
+         'views/website_snippet.xml',
          'views/website_menus.xml'
 
     ],
 'assets': {
-        'web.assets_backend': [
+        'web.assets_frontend': [
             'school_management/static/src/js/action_manager.js',
             'school_management/static/src/js/date_validation.js',
-            'school_management/static/src/js/leave_days_calculator.js'
+            'school_management/static/src/js/leave_days_calculator.js',
+            'school_management/static/src/xml/event_template.xml'
+
+        ],
+    },
+'assets': {
+        'web.assets_backend': [
+            'school_management/static/src/js/action_manager.js'
+
 
         ],
     }

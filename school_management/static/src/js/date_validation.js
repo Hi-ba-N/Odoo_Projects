@@ -1,5 +1,6 @@
 /** @odoo-module **/
 import publicWidget from "@web/legacy/js/public/public_widget";
+console.log('check')
 
 publicWidget.registry.AgeCalculator = publicWidget.Widget.extend({
     selector: '.oe_student_website',
@@ -8,22 +9,29 @@ publicWidget.registry.AgeCalculator = publicWidget.Widget.extend({
     },
 
     _onDobChange: function (ev) {
-        Console.log('work')
+//        console.log('work')
         const dobInput = $(ev.currentTarget);
-        console.log(dobInput)
+        console.log('input',dobInput)
         const dob = new Date(dobInput.val());
+        console.log('dob',dob)
         const today = new Date();
 
 
         let age = today.getFullYear() - dob.getFullYear();
-
+         console.log('age',age)
 
         if (dob >= today) {
+            console.log('if')
             alert("Choose a valid date");
             dobInput.val('');
             $('#age').val('');
         } else {
-            $('#age').val(age);
+            console.log('elseeee')
+
+//            console.log(this.$el.find('#ages'))
+            this.$el.find('#ages').val(age)
+
+//            $('#age').val(age);
         }
     },
 });

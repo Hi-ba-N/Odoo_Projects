@@ -10,7 +10,7 @@
                 <br/>
                 <br/>
             <h3>Leave Request</h3>
-            <form action="/leave/form/submit">
+            <form action="/leave/form/submit" class="oe_leave_form">
                 <div class="s_website_form_rows row s_col_no_bgcolor">
                      <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
                             <div class="row s_col_no_resize s_col_no_bgcolor">
@@ -40,7 +40,7 @@
                                     </span>
                                 </label>
                                 <div class="col-sm">
-                                    <input id="start date" type="date"
+                                    <input id="start_date" type="date"
                                            class="form-control s_website_form_input"
                                            name="start date" t-att-value="leave.start_date if leave else ''"/>
                                 </div>
@@ -55,7 +55,7 @@
                                     </span>
                                 </label>
                                 <div class="col-sm">
-                                    <input id="end date" type="date"
+                                    <input id="end_date" type="date"
                                            class="form-control s_website_form_input"
                                            name="end date" t-att-value="leave.end_date if leave else ''"/>
                                 </div>
@@ -70,9 +70,9 @@
                                     </span>
                                 </label>
                                 <div class="col-sm">
-                                    <input id="total" type="number"
-                                           class="form-control s_website_form_input"
-                                           name="total_days" />
+                                    <input id="total" type="text"
+                                           class="form-control s_website_form_input oe_total"
+                                           name="total_days" t-att-value="leave.total_days if leave else ''"  readonly="true"/>
                                 </div>
                             </div>
                         </div>

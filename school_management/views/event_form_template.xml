@@ -38,6 +38,7 @@
                                 </label>
                                 <div class="col-sm">
                                     <select id="club" name="club" class="form-control">
+                                        <option />
                         <t t-foreach="club" t-as="cl">
                             <option t-att-value="cl.id"  t-att-selected="cl.id == event.club_id.id if event else False"
                                     t-esc="cl.name"/>
