@@ -61,10 +61,10 @@
     ],
 'assets': {
         'web.assets_frontend': [
-            'school_management/static/src/js/action_manager.js',
             'school_management/static/src/js/date_validation.js',
             'school_management/static/src/js/leave_days_calculator.js',
-            'school_management/static/src/xml/event_template.xml'
+            'school_management/static/src/xml/dynamic_courosel.xml',
+            'school_management/static/src/js/snippet.js'
 
         ],
     },
