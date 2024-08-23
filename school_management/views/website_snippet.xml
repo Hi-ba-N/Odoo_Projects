@@ -2,7 +2,7 @@
 <odoo>
 <template id="event_snippet" name="Event Snippet">
 
-<section class="oe_structure container dynamic_snippet_blog">
+<section class="latest event">
 
 <div class="row">
 
@@ -25,6 +25,7 @@
 </div>
 
 </section>
+
 </template>
 
  <template id="basic_snippet" inherit_id="website.snippets"

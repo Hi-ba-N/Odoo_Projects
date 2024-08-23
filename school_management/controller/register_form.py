@@ -14,7 +14,7 @@ class RegisterForm(http.Controller):
             [('is_website', '=', True)])
         total_record = request.env['student.registration'].sudo().search_count(
             [('is_website', '=', True)])
-        print(total_record)
+        # print(total_record)
         pager = request.website.pager(
                     url='/register/',
                     total=total_record,

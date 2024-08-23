@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-<templates id="template" xml:space="preserve">
-<t t-name="school_management.event_snippet_carousel">
+<templates id="event_latest_template" xml:space="preserve">
+<t t-name="school_management.event_latest_snippet">
 
-<div id="course_carousel" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval">
+<div id="top_event_carousel" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval">
 
 <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
@@ -18,21 +17,22 @@
 <div class="block span3 col-3">
 
 <div class="card-group">
+ <h2>Hellloooooo</h2>
 
-<div class="card">
-<img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image_1920}}"
+<!--<div class="card">-->
+<!--<img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image}}"-->
 
-style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>
+<!--style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>-->
 
-<h5 class="mb-0"><t t-esc="item.name"/></h5>
+<!--<h5 class="mb-0"><t t-esc="item.name"/></h5>-->
 
-<a t-attf-href="/slides/{{item.id}}" class="btn btn-primary">
+<!--<a t-attf-href="/slides/{{item.id}}" class="btn btn-primary">-->
 
-Goto Events
+<!--Goto Events-->
 
-</a>
+<!--</a>-->
 
-</div>
+<!--</div>-->
 
 </div>
 
@@ -65,4 +65,3 @@ Goto Events
 </a>
 </t>
 </templates>
-</odoo>

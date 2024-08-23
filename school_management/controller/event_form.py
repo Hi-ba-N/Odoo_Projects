@@ -13,7 +13,6 @@ class EventForm(http.Controller):
             [('is_website', '=', True)])
 
         values = {
-
             'record': data
         }
         return request.render("school_management.tmp_event_tree", values)
@@ -21,11 +20,13 @@ class EventForm(http.Controller):
     @http.route(['/event/form'], type='http', website=True)
     def event_form(self, event_id=None):
         """This for rendering event form template"""
-        event = request.env['student.event'].sudo().browse(int(event_id)) if event_id else None
+        event = request.env['student.event'].sudo().browse(
+            int(event_id)) if event_id else None
 
         print(event)
 
-        return request.render("school_management.tmp_event_form", {'event': event})
+        return request.render("school_management.tmp_event_form",
+                              {'event': event})
 
     @http.route(['/event/submit'], type='http',
                 website=True)
@@ -39,8 +40,5 @@ class EventForm(http.Controller):
             'is_website': True
 
         })
-        vals = {
-            'event': event,
-        }
-
-        return request.render("school_management.tmp_event_form_success", vals)
+        print(event)
+        return request.render("school_management.tmp_event_form_success")

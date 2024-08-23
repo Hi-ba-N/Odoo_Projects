@@ -55,25 +55,30 @@
         'views/event_form_template.xml',
         'views/event_form_success_template.xml',
         'views/event_tree_template.xml',
-         'views/website_snippet.xml',
-         'views/website_menus.xml'
+        'views/website_snippet.xml',
+        # 'views/basic_snippet.xml',
+
+        'views/website_menus.xml'
 
     ],
-'assets': {
+    'assets': {
         'web.assets_frontend': [
-            'school_management/static/src/js/date_validation.js',
-            'school_management/static/src/js/leave_days_calculator.js',
-            'school_management/static/src/xml/dynamic_courosel.xml',
-            'school_management/static/src/js/snippet.js'
+            'school_management/static/src/**/*',
 
         ],
     },
-'assets': {
-        'web.assets_backend': [
-            'school_management/static/src/js/action_manager.js'
 
 
-        ],
-    }
+
+
+
+
+    # 'assets': {
+    #     'web.assets_backend': [
+    #         'school_management/static/src/js/action_manager.js'
+    #
+    #
+    #     ],
+    # }
 
 }
