@@ -22,7 +22,7 @@ var LatestEvent = publicWidget.Widget.extend({
         const events = await jsonrpc('/latest_events', {});
         console.log('events',events)
         const chunks = _chunk(events, 4);
-        console.log('chunks',chunks)
+        console.log('chunk',chunks)
         Object.assign(this, {
             events,
             chunks

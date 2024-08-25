@@ -23,7 +23,7 @@ class EventForm(http.Controller):
         event = request.env['student.event'].sudo().browse(
             int(event_id)) if event_id else None
 
-        print(event)
+        # print(event)
 
         return request.render("school_management.tmp_event_form",
                               {'event': event})
