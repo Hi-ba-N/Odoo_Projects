@@ -1,4 +1,5 @@
 /** @odoo-module **/
+console.log('date')
 import publicWidget from "@web/legacy/js/public/public_widget";
 publicWidget.registry.AgeCalculator = publicWidget.Widget.extend({
     selector: '.oe_student_website',

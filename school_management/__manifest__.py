@@ -56,29 +56,28 @@
         'views/event_form_success_template.xml',
         'views/event_tree_template.xml',
         'views/website_snippet.xml',
-        # 'views/basic_snippet.xml',
-
         'views/website_menus.xml'
 
     ],
-    'assets': {
-        'web.assets_frontend': [
-            'school_management/static/src/**/*',
+
+
+'assets': {
+        'web.assets_backend': [
+            'school_management/static/src/js/action_manager.js',
 
         ],
-    },
+        'web.assets_frontend': [
+            'school_management/static/src/js/snippet.js',
+             'school_management/static/src/xml/latest_event.xml'
+
+        ],
+}
 
 
 
 
 
 
-    # 'assets': {
-    #     'web.assets_backend': [
-    #         'school_management/static/src/js/action_manager.js'
-    #
-    #
-    #     ],
-    # }
+
 
 }

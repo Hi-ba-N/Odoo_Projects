@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<template id="event_snippet" name="Event Snippet">
+    <template id="event_snippet" name="Event Snippet">
 
-<section class="latest event">
+<section class="latest_event">
 
 <div class="row">
 
-<div class="col-md-12">
-
 <div class="text-center py-5">
 
-<h1 class="h1">  Events</h1>
+<div class="h4" style="text-align:center">Latest Events <br/>
+    <br/></div>
 
-<div class="h3" style="text-align:center">Latest Events</div>
+<div class="col-md-12">
 
-<div id="courosel">
+<!--<div class="h3" style="text-align:center">Latest Events</div>-->
+
+<div id="event_latest">
 
 </div>
 
@@ -25,10 +26,10 @@
 </div>
 
 </section>
-
 </template>
 
- <template id="basic_snippet" inherit_id="website.snippets"
+
+    <template id="basic_snippet" inherit_id="website.snippets"
               name="Latest Event Snippet">
         <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]"
                position="after">

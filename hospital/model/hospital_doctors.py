@@ -9,17 +9,15 @@ class HrEmployee(models.Model):
 
 
  # WHERE sl.start_date >= %s AND sl.end_date <= %s
-# < odoo >
-# < template
-# id = "assets_frontend"
-# inherit_id = "web.assets_frontend"
-# name = "Leave Form Assets" >
-# < xpath
-# expr = "."
-# position = "inside" >
-# < script
-# type = "text/javascript"
-# src = "/school_management/static/src/js/leave_days_calculator.js" / >
-# < / xpath >
-# < / template >
-# < / odoo >
+# <div class="backtosnippet">
+# <a href="/" class="reverse_link">Back</a>
+# </div>
+
+
+
+    # @http.route(['/room/<int:id>'], type='http', auth='user', website=True)
+    # def get_room_data(self, **post):
+    #     room = (request.env['hostel.room'].
+    #             browse(post.get('id')))
+    #     return request.render('hostel_management.room_data_snippet',
+    #                          {'room':room})

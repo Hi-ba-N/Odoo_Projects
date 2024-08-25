@@ -16,11 +16,11 @@ class RegisterForm(http.Controller):
             [('is_website', '=', True)])
         # print(total_record)
         pager = request.website.pager(
-                    url='/register/',
-                    total=total_record,
-                    page=page,
-                    step=3,
-                    )
+            url='/register/',
+            total=total_record,
+            page=page,
+            step=3,
+        )
         student_register = request.env['student.registration'].sudo().search(
             [('is_website', '=', True)], limit=3,
             offset=pager['offset'])

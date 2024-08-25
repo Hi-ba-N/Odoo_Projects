@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="school_management.event_latest_snippet">
+        <div id="top_event_carousel" class="container carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <t t-foreach="chunks" t-as="chunk" t-key="chunk_index">
+                    <div t-att-class="chunk_index === 0 ? 'carousel-item active' : 'carousel-item'">
+                        <div class="row">
+                            <t t-foreach="chunk" t-as="item" t-key="item.id">
+                                <div class="block span3 col-3">
+                                    <div class="card-group">
+                                        <div class="card">
+                                            <a t-attf-href="/event/form?event_id={{item.id}}">
+                                            <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image}}"
+                                                 style="padding: 0px; margin: 0px; height: 160px; width:305px; border:10"/>
+                                            <h6 class="mb-0" style=" font-size: 1.5rem; color: #333;">
+                                            <center> <t t-esc="item.name"/></center>
+                                             </h6>
+<!--                                            <a t-attf-href="/event/form?event_id={{item.id}}" class="btn btn-primary">-->
+<!--                                                Goto Event-->
+<!--                                            </a>-->
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+
+            </div>
+         <a class="carousel-control-prev" t-attf-href="#top_event_carousel" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
+                <span class="fa fa-chevron-circle-left fa-2x"/>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" t-attf-href="#top_event_carousel" data-bs-slide="next" role="button" aria-label="Next" title="Next">
+                <span class="fa fa-chevron-circle-right fa-2x"/>
+                <span class="visually-hidden">Next</span>
+            </a>
+
+        </div>
+
+    </t>
+
+</templates>
