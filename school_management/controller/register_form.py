@@ -56,8 +56,5 @@ class RegisterForm(http.Controller):
 
         })
 
-        vals = {
-            'student': student,
-        }
         return request.render("school_management.tmp_register_form_success",
-                              vals)
+                              )

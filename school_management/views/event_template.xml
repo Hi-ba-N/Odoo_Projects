@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="event_data_snippet" name="room data">
+        <t t-call="website.layout">
+            <section class="  oe_structure oe_empty">
+                <div class="container ">
+                            <div class="backtosnippet">
+                         <a href="/" class="reverse_link">Back</a>
+                         </div>
+                    <center>
+                    <t t-foreach="event" t-as="data">
+                        <div class=" m-auto">
+                            <div class="card" style="width: 25rem;">
+                                <img class="card-img-top" t-attf-src="data:image/png;base64,{{data.image}}"/>
+                                <div class="card-body">
+                                    <h5 class="card-title"><span t-out="data.name"/></h5>
+                                        <div >
+                                            Start Date : <span t-out="data.start_date"/>
+                                        </div>
+                                        <div >
+                                            End Date :  <span t-out="data.end_date"/>
+                                        </div>
+
+                                        <div>
+                                            Venue : <span t-out="data.venue"/>
+                                        </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                    </center>
+                </div>
+            </section>
+        </t>
+    </template>
+
+</odoo>

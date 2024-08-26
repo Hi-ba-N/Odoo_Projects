@@ -56,6 +56,7 @@
         'views/event_form_success_template.xml',
         'views/event_tree_template.xml',
         'views/website_snippet.xml',
+        'views/event_template.xml',
         'views/website_menus.xml'
 
     ],
@@ -69,6 +70,7 @@
         'web.assets_frontend': [
             'school_management/static/src/js/snippet.js',
              'school_management/static/src/xml/latest_event.xml'
+
 
         ],
 }

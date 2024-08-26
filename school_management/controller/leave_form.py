@@ -26,7 +26,8 @@ class LeaveForm(http.Controller):
         leave = request.env['student.leave'].sudo().browse(
             int(leave_id)) if leave_id else None
 
-        return request.render("school_management.tmp_leave_form", {'leave': leave})
+        return request.render("school_management.tmp_leave_form",
+                              {'leave': leave})
 
     @http.route(['/leave/form/submit'], type='http',
                 website=True)
@@ -40,10 +41,6 @@ class LeaveForm(http.Controller):
             'is_website': True
 
         })
-        vals = {
-            'leave': leave,
-        }
 
         return request.render(
-            "school_management.tmp_leave_form_success", vals)
-
+            "school_management.tmp_leave_form_success")

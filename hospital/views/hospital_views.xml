@@ -22,7 +22,9 @@
 
 </odoo>
 
-
+<!--                                            <a t-attf-href="/event/form?event_id={{item.id}}" class="btn btn-primary">-->
+<!--                                                Goto Event-->
+<!--                                            </a>-->
 
 
 

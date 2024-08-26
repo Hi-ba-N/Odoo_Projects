@@ -48,3 +48,4 @@
     </record>
 
 </odoo>
+<!--<div id="top_event_carousel_"<t t-esc="chunk_index" class="container carousel slide" data-bs-ride="carousel"/>-->
