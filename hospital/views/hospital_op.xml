@@ -48,4 +48,28 @@
     </record>
 
 </odoo>
-<!--<div id="top_event_carousel_"<t t-esc="chunk_index" class="container carousel slide" data-bs-ride="carousel"/>-->
+
+
+<!--<template id="website_sale_product_detail_inherit" inherit_id="website_sale.product">-->
+<!--    <xpath expr="//div[@id='product_detail']" position="after">-->
+<!--        <div class="row mt-4">-->
+<!--            <div class="col-12">-->
+<!--                <h3>Bill of Materials</h3>-->
+<!--                <table class="table table-bordered">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th>Component</th>-->
+<!--                            <th>Quantity</th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr t-foreach="product.bom_ids" t-as="bom_line">-->
+<!--                            <td><t t-esc="bom_line.product_id.display_name"/></td>-->
+<!--                            <td><t t-esc="bom_line.product_qty"/></td>-->
+<!--                        </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </xpath>-->
+<!--</template>-->
