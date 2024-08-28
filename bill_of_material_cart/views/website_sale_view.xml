@@ -4,17 +4,33 @@
 <!--    <xpath expr="//div[@id='cart_products']/div" position="after">-->
     <xpath expr="//div[hasclass('flex-grow-1')]" position="inside">
         <div class="product_bom">
-            <t t-foreach="line.product_id.bom_ids" t-as="b">
-              <p>
-                  <h6>Code: <t t-esc="b.code"/></h6>
-                 <h6>Name: <a t-attf-href="/shop/{{line.product_id.id}}">
-                     <t t-esc="b.product_tmpl_id.name"/>
-              </a>
-                 </h6>
-
-            </p>
-
-            </t>
+            <h6>BOM</h6>
+             <table class="table table-bordered">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="line.product_id.bom_ids" t-as="b">
+                            <tr>
+                                <td><t t-esc="b.code"/></td>
+                                <td>
+<!--                                    <a t-attf-href="/shop/{{line.product_id.id}}">-->
+                                        <t t-esc="b.product_tmpl_id.name"/>
+<!--                                    </a>-->
+                                </td>
+                                <td>
+                                    <ul>
+                                        <t t-foreach="b.bom_line_ids" t-as="component">
+                                            <li><a t-attf-href="/shop/{{component.product_id.id}}">
+                                                <t t-esc="component.product_id.display_name"/>
+                                                </a>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
         </div>
     </xpath>
 </template>
