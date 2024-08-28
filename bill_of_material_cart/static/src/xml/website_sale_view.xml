@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit the cart template -->
+
+    <template id="inherit_cart_template" inherit_id="website_sale.cart_lines">
+        <xpath expr="//div[@id='cart_products']" position="inside">
+            <div class="product_bom_data"></div> <!-- Placeholder for BoM data -->
+        </xpath>
+    </template>
+
+
+
+     Custom QWeb template for rendering BoM data
+    <template id="bill_of_material_cart.bom_template">
+        <div class="product_bom">
+            <h5>Bill of Materials:</h5>
+            <ul>
+                <t t-foreach="bom_data" t-as="bom">
+                    <li><strong><t t-esc="bom.name"/>:</strong> <t t-esc="bom.quantity"/> units</li>
+                </t>
+            </ul>
+        </div>
+    </template>
+</odoo>

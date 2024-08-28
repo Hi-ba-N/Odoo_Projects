@@ -1,7 +1,0 @@
-<template id="product_bom" inherit_id="website_sale.products_item">
-   <xpath expr="//a[@id='add_to_cart']" position="after">
-<div>
-
-</div>
-   </xpath>
-</template>
