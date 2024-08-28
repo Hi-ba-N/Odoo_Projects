@@ -22,3 +22,10 @@
     </record>
 </odoo>
 
+<!--&lt;!&ndash;            <t t-foreach="line.product_id" t-as="b">&ndash;&gt;-->
+<!--                <t t-foreach="bom " t-as="bm">-->
+<!--                    <p>-->
+<!--                        <t t-esc="bm.get['name']"/></p>-->
+<!--&lt;!&ndash;                </t>&ndash;&gt;-->
+<!--            </t>-->
+
