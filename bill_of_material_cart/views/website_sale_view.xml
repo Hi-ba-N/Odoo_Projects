@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="inherit_cart_template" inherit_id="website_sale.cart_lines">
+        <xpath expr="//div[@id='cart_products']" position="inside">
+            <div class="product_bom">
+
+                <h5>Bill of Materialsee:</h5>
+<!--                 <t t-esc="line.id"/>-->
+                <t t-foreach="bom_data" t-as="b">
+                    <h3><strong><t t-esc="b['name']"/>:</strong>
+                        <t t-esc="b.get('quantity')"/> units
+                    </h3>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+
+
+<!--    <template id="bill_of_material_cart.bom_template">-->
+<!--        <div class="product_bom">-->
+<!--            <h5>Bill of Materials:</h5>-->
+<!--            <ul>-->
+
+<!--                <t t-foreach="bom" t-as="bom">-->
+<!--                    <li><strong><t t-esc="bom.name"/>:</strong> <t t-esc="bom.quantity"/> units</li>-->
+<!--                </t>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </template>-->
+</odoo>

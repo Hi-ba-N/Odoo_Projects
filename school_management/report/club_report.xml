@@ -19,7 +19,7 @@
                             <t t-if="club_data">
                                 <h4>
 
-                                    <t t-esc="club_data[0]['club_name']"/>
+
 
                                 </h4>
 
