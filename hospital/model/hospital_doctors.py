@@ -112,3 +112,7 @@ class HrEmployee(models.Model):
 # export
 # default
 # publicWidget.registry.ProductBoM;
+
+
+
+
