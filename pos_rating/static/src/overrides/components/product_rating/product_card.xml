@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="pos_rating.ProductCard" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+    <t t-name="pos_rating.product_rating" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('product-information-tag')]" position="after">
                     <div class="product_rating">
-             <h6>R
-                 <t t-esc="props"/>
-             </h6>
+                        <i>jhhjjh</i>
+             <span>
+                 <t t-esc="props.product_rating"/>
+             </span>
              </div>
         </xpath>
     </t>

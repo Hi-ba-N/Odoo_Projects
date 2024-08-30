@@ -1,7 +1,7 @@
 {
     'name': "POS Rating",
     'version': '17.0.1.0.0',
-    'depends': ['base','purchase'],
+    'depends': ['point_of_sale','product','base'],
     'author': "Hiba",
     'category': 'Category',
     'description': "POS Rating",
@@ -12,7 +12,7 @@
 'assets': {
         'point_of_sale._assets_pos': [
             'pos_rating/static/src/js/product_rating.js',
-            'pos_rating/static/src/overrides/components/product_rating/product_cad.xml'
+            'pos_rating/static/src/overrides/components/product_rating/product_card.xml'
         ],
     },
 

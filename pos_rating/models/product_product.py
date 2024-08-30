@@ -1,9 +1,8 @@
 # coding: utf-8
-# coding: utf-8
 from odoo import fields, models
 
 
-class ProductTemplate(models.Model):
+class ProductProduct(models.Model):
     """ This is used for inheriting product and new field as product rating"""
     _inherit = 'product.product'
 
