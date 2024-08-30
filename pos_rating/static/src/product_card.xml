@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_rating.product_rating" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-information-tag')]" position="after">
+                    <div class="product_rating">
+                        <t t-set="rating" t-value="env.services.pos.db.product_by_id[props.productId].product_rating"/>
+                            <t t-if="rating">
+                                     <t t-if="rating==5">
+                                       <i class="">* * * * *</i>
+                                                 </t>
+                                    <t t-elif="rt==1">
+                                            <i>*</i>
+                                        </t>
+                                    <t t-elif="rating==2">
+                                            <i>* *</i>
+                                        </t>
+
+                                              <t t-elif="rating==3">
+                                                  <i>* * *</i>
+
+                                           </t>
+                                     <t t-else="">
+                                                  <i>****</i>
+
+                                           </t>
+
+                                    </t>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                                <i  title="Product Rating">Rating:-->
+<!--                            <t t-esc="rating"/> </i></t>-->
+
+
+
+                    </div>
+
+
+        </xpath>
+    </t>
+</templates>

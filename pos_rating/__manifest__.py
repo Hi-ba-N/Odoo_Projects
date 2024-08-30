@@ -11,8 +11,10 @@
     ],
 'assets': {
         'point_of_sale._assets_pos': [
-            'pos_rating/static/src/js/product_rating.js',
-            'pos_rating/static/src/overrides/components/product_rating/product_card.xml'
+            'pos_rating/static/src/product_rating.js',
+            'pos_rating/static/src/product_card.xml',
+            'pos_rating/static/src/orderline.js',
+            'pos_rating/static/src/orderline.xml'
         ],
     },
 

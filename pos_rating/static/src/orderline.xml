@@ -4,7 +4,8 @@
    <xpath expr="//ul[hasclass('info-list')]" position="before">
        <t t-if="line.product_rating">
            <div class="orderline">
-           <t t-esc="line.product_rating"/>
+           <h6>
+               Rating: <t t-esc="line.product_rating"/></h6>
            </div>
        </t>
 

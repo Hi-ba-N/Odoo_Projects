@@ -6,7 +6,7 @@ class PosSession(models.Model):
 
     def _loader_params_product_product(self):
         result = super()._loader_params_product_product()
-        print(result)
+        # print(result)
         result['search_params']['fields'].append('product_rating')
         print(result)
         return result

@@ -9,7 +9,7 @@ return{
 product_rating: this.getProductRating(),
 };
 },
-console.log(this)
+
 getProductRating(){
 return this.product.product_rating
 }

@@ -8,7 +8,7 @@ class ResConfigSettings(models.TransientModel):
     is_select_multiple_products = fields.Boolean(
         string='Select Multiple Products'
     )
-    product_id = fields.Many2many('product.template', string='Products')
+    product_id = fields.Many2many('customer.type', string='Customer Records')
 
 
 

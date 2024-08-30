@@ -97,21 +97,23 @@ class HrEmployee(models.Model):
 # `);
 # });
 #
-# // Append
-# BoM
-# data
-# after
-# the
-# product
-# description in the
-# cart
-# $productElement.find('.product_description').after($bomContainer);
-# },
-# });
-#
-# export
-# default
-# publicWidget.registry.ProductBoM;
+# //setup(){
+# //super.setup(...arguments)
+# //           product_rating: this.get_ProductRating()
+# //
+# //},
+# // getDisplayData() {
+# //       return {
+# //            ...super.getDisplayData(),
+# //           product_rating: this.get_ProductRating()
+# //
+# //
+# //       };
+# //       },
+# //              get_ProductRating(){
+# //
+# //       return this.product.product_rating
+# //       }
 
 
 
