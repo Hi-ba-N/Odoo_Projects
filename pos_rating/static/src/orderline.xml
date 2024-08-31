@@ -2,12 +2,52 @@
 <templates id="template" xml:space="preserve">
     <t t-name="pos_rating.orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
    <xpath expr="//ul[hasclass('info-list')]" position="before">
+         <div class="orderline">
        <t t-if="line.product_rating">
-           <div class="orderline">
-           <h6>
-               Rating: <t t-esc="line.product_rating"/></h6>
-           </div>
+          <t t-if="line.product_rating == 5">
+                                  <i class="fa fa-star"/>
+                                  <i class="fa fa-star"/>
+                                  <i class="fa fa-star"/>
+                                  <i class="fa fa-star"/>
+                                  <i class="fa fa-star"/>
+                            </t>
+                                  <t t-elif="rating == 4">
+                                  <i class="fa fa-star"/>
+                                    <i class="fa fa-star"/>
+                                    <i class="fa fa-star"/>
+                                    <i class="fa fa-star"/>
+                                    <i class="fa fa-star-o"/>
+                </t>
+                <t t-elif="line.product_rating == 3">
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                </t>
+                <t t-elif="line.product_rating == 2">
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                </t>
+                <t t-elif="line.product_rating == 1">
+                    <i class="fa fa-star"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                    <i class="fa fa-star-o"/>
+                </t>
        </t>
+         </div>
+
+
+
+<!--           <h6>-->
+<!--               Rating: <t t-esc="line.product_rating"/></h6>-->
+
+
 
    </xpath>
     </t>

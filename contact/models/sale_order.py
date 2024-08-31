@@ -8,6 +8,7 @@ class SaleOrder(models.Model):
 
     _inherit = 'sale.order'
 
+
     def check_partner(self):
         invoice_product = self.env['product.template'].search(
             [('invoice_policy', '=', 'order')])
