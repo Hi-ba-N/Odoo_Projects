@@ -10,6 +10,14 @@ export class ClearButton extends Component {
     }
     async click() {
     console.log('button click')
+        const currentOrder = this.pos.get_order();
+
+        if (currentOrder) {
+            // Remove all the order lines
+            currentOrder.get_orderlines().forEach(line => {
+                currentOrder.remove_orderline(line);
+            });
+    }
     }
 }
 ProductScreen.addControlButton({ component: ClearButton });
