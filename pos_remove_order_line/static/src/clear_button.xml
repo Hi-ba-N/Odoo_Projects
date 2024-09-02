@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_remove_order_line.ClearButton" owl="1">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.click()">
+            <i class="fa fa-align-justify me-1" role="img" aria-label="Clear Button" title="Clear Button" />
+            Clear Button
+        </button>
+    </t>
+</templates>
+

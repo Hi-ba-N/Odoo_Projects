@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from odoo import models
 
 
@@ -8,7 +10,7 @@ class PosSession(models.Model):
         result = super()._loader_params_product_product()
         # print(result)
         result['search_params']['fields'].append('product_rating')
-        print(result)
+        # print(result)
         return result
 
 
