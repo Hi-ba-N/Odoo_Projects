@@ -3,7 +3,11 @@
     <t t-name="pos_remove_order_line.ClearButton" owl="1">
         <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.click()">
             <i class="fa fa-align-justify me-1" role="img" aria-label="Clear Button" title="Clear Button" />
-            Clear Button
+            Clear
+        </button>
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.Onclick()">
+            <i class="fa fa-eraser" role="img" aria-label="X Button" title="X Button" />
+            X
         </button>
     </t>
 </templates>

@@ -8,7 +8,7 @@ class EventSnippet(http.Controller):
                 methods=['POST'])
     def all_events(self):
         print('function')
-        events = http.request.env['student.event'].search_read(
+        events = http.request.env['student.event'].sudo().search_read(
             [], ['name', 'image', 'id', 'venue', 'start_date'],
             order='create_date desc')
         # print(events)

@@ -9,7 +9,6 @@
      'views/res_config_views.xml',
       'views/website_sale_view.xml'
 
-
     ],
 
 

@@ -9,8 +9,8 @@
     'application': True,
     'data': [
         'security/res_groups.xml',
-        'security/ir.model.access.csv',
         'security/ir_rule.xml',
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/ir_actions_server_data.xml',
         'data/student_department_data.xml',

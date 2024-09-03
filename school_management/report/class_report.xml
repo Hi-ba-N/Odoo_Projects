@@ -93,7 +93,6 @@
                 </table>
             </t>
 
-
             <t t-if="data['class_ids'] and len(data['class_ids']) > 1">
                 <table class="table table-sm" style="text-align: center">
                     <thead>

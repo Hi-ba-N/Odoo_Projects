@@ -6,9 +6,9 @@ from odoo.http import request
 class RegisterForm(http.Controller):
     """This is for student form controller"""
 
-    @http.route(['/register/', '/register/page/<int:page>'], type='http',
+    @http.route(['/register/', '/register/page/<int:page>'], type='http', auth='public',
                 website=True)
-    def register(self, page=1):
+    def register(self,page):
         """This is used searching student record that is created through website and render the tree template"""
         data = request.env['student.registration'].sudo().search(
             [('is_website', '=', True)])
@@ -33,7 +33,7 @@ class RegisterForm(http.Controller):
 
         return request.render("school_management.tmp_register_tree", values)
 
-    @http.route(['/register/form'], type='http', website=True)
+    @http.route(['/register/form'], type='http', website=True,auth='public')
     def register_form(self, register_id=None):
         """This for rendering student register  form template"""
 
@@ -43,7 +43,7 @@ class RegisterForm(http.Controller):
                               {'student': student})
 
     @http.route(['/register/form/submit'], type='http',
-                website=True)
+                website=True,auth='public')
     def register_form_submit(self, **post):
         """Creating student through website"""
         student = request.env['student.registration'].sudo().create({

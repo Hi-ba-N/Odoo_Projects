@@ -9,5 +9,5 @@ class PosSession(models.Model):
         result = super()._loader_params_res_partner()
         result['search_params']['fields'].append('activate_purchase_limit')
         result['search_params']['fields'].append('purchase_limit')
-        print(result)
+        # print(result)
         return result

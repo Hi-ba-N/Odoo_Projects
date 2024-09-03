@@ -4,6 +4,7 @@ from . import register_form
 from . import leave_form
 from . import event_form
 from . import event_snippet
+# from . import shop
 
 
 

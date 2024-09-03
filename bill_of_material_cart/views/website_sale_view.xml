@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="inherit_cart_template" inherit_id="website_sale.cart_lines">
-<!--    <xpath expr="//div[@id='cart_products']/div" position="after">-->
     <xpath expr="//div[hasclass('flex-grow-1')]" position="inside">
         <div class="product_bom">
             <h6>BOM</h6>
@@ -13,9 +12,7 @@
                             <tr>
                                 <td><t t-esc="b.code"/></td>
                                 <td>
-<!--                                    <a t-attf-href="/shop/{{line.product_id.id}}">-->
                                         <t t-esc="b.product_tmpl_id.name"/>
-<!--                                    </a>-->
                                 </td>
                                 <td>
                                     <ul>
