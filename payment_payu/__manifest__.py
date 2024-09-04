@@ -6,7 +6,8 @@
     'author': 'Hiba ',
     'depends': ['payment'],
     'data': [
-
+     'views\payment_provider_views.xml',
+     # 'data\payment_provider_data.xml'
     ],
 
     'license': 'LGPL-3'
