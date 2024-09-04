@@ -10,12 +10,14 @@ RemoveLine(){
 
        const currentOrder = this.env.services.pos.get_order();
 //       const line =currentOrder.orderlines
-
+         const line = currentOrder.orderlines.find((line)=>line.full_product_name==this.props.line.productName)
        console.log('current order',currentOrder)
-/
+//       console.log('line',line)
+       console.log(this.props.line)
+
 //       console.log(lines)
 //       const selectedLine = currentOrder.get_selected_orderline();
-//                   currentOrder.removeOrderline(line)
+                   currentOrder.removeOrderline(line)
 
 
 
