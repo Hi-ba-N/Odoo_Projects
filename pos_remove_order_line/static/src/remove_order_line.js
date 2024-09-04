@@ -75,26 +75,7 @@ ProductScreen.addControlButton({ component: ClearButton });
 
 
 
-//
-//        if (currentOrder) {
-//            // Remove all the order lines
-//            currentOrder.get_orderlines().forEach(line => {
-//                currentOrder.remove_orderline(line);
-//            });
-//    }
 
-
-//    if (lines.length){
-//    console.log('line')
-//     lines.filter(line => line.get_product()).
-//     forEach(line => currentOrder.removeOrderline(line));
-//    }
-//    else{
-//     this.pos.popup.add(ErrorPopup, {
-//                title: _t("No Items"),
-//                body: _t("No Items to Remove"),
-//            });
-//    }
 //    const currentOrder = this.pos.get_order();
 //    const lines = currentOrder.get_orderlines();
 //    const selectedLine = currentOrder.get_selected_orderline();
