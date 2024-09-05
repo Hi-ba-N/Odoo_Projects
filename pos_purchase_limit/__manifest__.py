@@ -12,7 +12,7 @@
 'assets': {
         'point_of_sale._assets_pos': [
             'pos_purchase_limit/static/src/payment_screen.js',
-            'pos_purchase_limit/static/src/payment_order.js'
+            'pos_purchase_limit/static/src/payment_order.js',
 
         ],
     },

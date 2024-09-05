@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="redirect_form">
+        <form t-att-action="https://test.payu.in/_payment" method="post" >
+            <input type="hidden" name="key" value="JP***g" />
+            <input type="hidden" name="txnid" value="t6svtqtjRdl4ws" />
+            <input type="hidden" name="productinfo" value="iPhone" />
+            <input type="hidden" name="amount" value="10" />
+            <input type="hidden" name="email" value="test@gmail.com" />
+            <input type="hidden" name="firstname" value="Ashish" />
+
+        </form>
+
+    </template>
+</odoo>
