@@ -12,7 +12,7 @@ class PaymentTransaction(models.Model):
     def _get_specific_rendering_values(self, processing_values):
         res = super()._get_specific_rendering_values(processing_values)
         print(processing_values)
-        api_url = 'https://secure.payu.in/_payment'
+        api_url = 'https://test.payu.in/_payment'
         if self.provider_code != 'payu':
             return res
         payu_values = {
