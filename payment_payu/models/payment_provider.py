@@ -34,9 +34,11 @@ class PaymentProvider(models.Model):
         sign_values = {
             **values,
             'key': self.payu_merchant_key,
+            'salt': '4R38IvwiV57FwVpsgOvTXBdLE4tHUXFW'
         }
+        print(sign_values['salt'])
         if incoming:
-            print('incoming')
+
             keys = 'salt|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|' \
                    'txnid|key'
             sign = '|'.join(f'{sign_values.get(k) or ""}' for k in keys.split('|'))

@@ -23,8 +23,8 @@ class PaymentTransaction(models.Model):
             'amount': self.amount,
             'email': self.partner_email,
             'phone': self.partner_phone,
-            'surl': 'https://apiplayground-response.herokuapp.com/',
-            'furl': 'https://apiplayground-response.herokuapp.com/',
+            'surl': 'https://test-payment-middleware.payu.in/simulatorResponse',
+            'furl': 'https://test-payment-middleware.payu.in/simulatorResponse',
             'api_url': api_url,
 
 
@@ -33,13 +33,13 @@ class PaymentTransaction(models.Model):
             payu_values, incoming=False,
         )
         print(payu_values)
-        print(payu_values['hash'])
+        # print(payu_values['hash'])
         return payu_values
 
     def _get_tx_from_notification_data(self, provider_code,
                                        notification_data):
         """ Override of payment to find the transaction based on Payu data."""
-
+        print('gettxn work')
         tx = super()._get_tx_from_notification_data(provider_code,
                                                     notification_data)
         print(notification_data)
@@ -62,10 +62,12 @@ class PaymentTransaction(models.Model):
                     "No transaction found matching reference %s.",
                     reference)
             )
+        print('tx',tx)
 
         return tx
 
     def _process_notification_data(self, notification_data):
+        print('process data working')
         """ Override of payment to process the transaction based on Payu data.
 
         Note: self.ensure_one()
@@ -84,7 +86,7 @@ class PaymentTransaction(models.Model):
         payment_method_type = notification_data.get('bankcode', '')
         payment_method = self.env['payment.method']._get_from_code(payment_method_type)
         self.payment_method_id = payment_method or self.payment_method_id
-
+        print(payment_method_type)
         # Update the payment state.
         status = notification_data.get('status')
         if status == 'success':
