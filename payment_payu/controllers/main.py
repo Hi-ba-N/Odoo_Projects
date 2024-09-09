@@ -5,7 +5,6 @@ from odoo.http import request
 
 class PayUController(http.Controller):
     _return_url = '/payment/payu/return'
-
     @http.route(
         _return_url, type='http', auth='public', methods=['GET', 'POST'],
         csrf=False,

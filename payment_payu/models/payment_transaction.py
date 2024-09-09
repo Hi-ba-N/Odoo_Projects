@@ -1,5 +1,5 @@
 # coding: utf-8
-from importlib.resources import _
+# from importlib.resources import _
 
 from werkzeug import urls
 
@@ -78,12 +78,16 @@ class PaymentTransaction(models.Model):
         status = notification_data.get('status')
         if status == 'success':
             self._set_done()
-            sale_order = self.sale_order_ids
-            print(sale_order)
+            # sale_order = self.sale_order_ids
+            # print(sale_order)
 
-            if sale_order:
-                print('sale order')
-                invoice = sale_order._create_invoices()
+            # if self.sale_order_ids:
+            #     print('sale order')
+            #
+            #     self.sale_order_ids.action_confirm()
+            #     self.sale_order_ids._create_invoices()
+            #     for invoice in self.sale_order_ids.invoice_ids:
+            #         invoice.action_post()
 
                 # invoice.action_post()
         else:
