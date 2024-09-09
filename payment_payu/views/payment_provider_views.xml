@@ -8,7 +8,7 @@
             <group name="provider_credentials" position="inside">
                 <group invisible="code != 'payu'">
                     <field name="payu_merchant_key" string="Merchant Key" required="code == 'payu' and state != 'disabled'" />
-<!--                    <field name="payu_merchant_salt" string="Merchant Salt" required="code == 'payu' and state != 'disabled'" password="True"/>-->
+                    <field name="payu_merchant_salt" string="Merchant Salt" required="code == 'payu' and state != 'disabled'" password="True"/>
                 </group>
             </group>
         </field>

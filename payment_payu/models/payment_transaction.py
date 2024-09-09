@@ -1,9 +1,12 @@
+# coding: utf-8
+from importlib.resources import _
 
-from odoo import _ , models
+from werkzeug import urls
+
+from odoo.addons.payment_payu.controllers.main import PayUController
+
+from odoo import _, models
 from odoo.exceptions import ValidationError
-
-
-# from odoo.addons.payment import utils as payment_utils
 
 
 class PaymentTransaction(models.Model):
@@ -23,17 +26,16 @@ class PaymentTransaction(models.Model):
             'amount': self.amount,
             'email': self.partner_email,
             'phone': self.partner_phone,
-            'surl': 'https://test-payment-middleware.payu.in/simulatorResponse',
-            'furl': 'https://test-payment-middleware.payu.in/simulatorResponse',
-            'api_url': api_url,
+            'return_url': urls.url_join(self.get_base_url(),
+                                        PayUController._return_url),
 
+            'api_url': api_url,
 
         }
         payu_values['hash'] = self.provider_id._payu_generate_sign(
-            payu_values, incoming=False,
+            payu_values
         )
-        print(payu_values)
-        # print(payu_values['hash'])
+        print(payu_values['hash'])
         return payu_values
 
     def _get_tx_from_notification_data(self, provider_code,
@@ -42,7 +44,7 @@ class PaymentTransaction(models.Model):
         print('gettxn work')
         tx = super()._get_tx_from_notification_data(provider_code,
                                                     notification_data)
-        print(notification_data)
+        print('tx', tx)
         if provider_code != 'payu' or len(tx) == 1:
             return tx
 
@@ -62,38 +64,32 @@ class PaymentTransaction(models.Model):
                     "No transaction found matching reference %s.",
                     reference)
             )
-        print('tx',tx)
+        print('tx2', tx)
 
         return tx
 
     def _process_notification_data(self, notification_data):
+        """ Override of payment to process the transaction based on Payu data. """
         print('process data working')
-        """ Override of payment to process the transaction based on Payu data.
-
-        Note: self.ensure_one()
-
-        :param dict notification_data: The notification data sent by the provider
-        :return: None
-        """
         super()._process_notification_data(notification_data)
-        if self.provider_code != 'payu':
-            return
+        self.provider_reference = notification_data.get('mihpayid')
 
-        # Update the provider reference.
-        self.provider_reference = notification_data.get('payuId')
 
-        # Update the payment method
-        payment_method_type = notification_data.get('bankcode', '')
-        payment_method = self.env['payment.method']._get_from_code(payment_method_type)
-        self.payment_method_id = payment_method or self.payment_method_id
-        print(payment_method_type)
-        # Update the payment state.
         status = notification_data.get('status')
         if status == 'success':
             self._set_done()
-        else:
-            error_code = notification_data.get('Error')
-            self._set_error(
-                "PayU: " + _("The payment encountered an error with code %s", error_code)
-            )
+            sale_order = self.sale_order_ids
+            print(sale_order)
 
+            if sale_order:
+                print('sale order')
+                invoice = sale_order._create_invoices()
+
+                # invoice.action_post()
+        else:
+            error_code = notification_data.get('error')
+            print(error_code)
+            self._set_error(
+                "PayU: " + _(notification_data.get('error_Message'))
+
+            )
