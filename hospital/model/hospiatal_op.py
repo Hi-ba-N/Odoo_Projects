@@ -28,11 +28,7 @@ class HospitalOp(models.Model):
     # check=self.env['sale.order'].search([('amount_total', '>=', 500)]).read(['partner_id','name','amount_total'])
     # print(check)
 
-    # // const
-    # monthDifference = today.getMonth() - dob.getMonth();
-    # // if (monthDifference < 0 | | (monthDifference === 0 & & today.getDate() < dob.getDate())) {
-    # // age--;
-    # //}
-
-    # currentDate.setDate(currentDate.getDate() + 1);
+    # for invoice in self.sale_order_ids.invoice_ids:
+    #     print(invoice)
+    #     invoice.action_post()
 

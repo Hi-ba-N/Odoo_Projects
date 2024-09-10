@@ -1,10 +1,7 @@
 # coding: utf-8
-# from importlib.resources import _
 
 from werkzeug import urls
-
 from odoo.addons.payment_payu.controllers.main import PayUController
-
 from odoo import _, models
 from odoo.exceptions import ValidationError
 
@@ -13,6 +10,7 @@ class PaymentTransaction(models.Model):
     _inherit = 'payment.transaction'
 
     def _get_specific_rendering_values(self, processing_values):
+        """Return a dict of provider-specific values used to render the redirect form."""
         res = super()._get_specific_rendering_values(processing_values)
         print(processing_values)
         api_url = 'https://test.payu.in/_payment'
@@ -74,26 +72,18 @@ class PaymentTransaction(models.Model):
         super()._process_notification_data(notification_data)
         self.provider_reference = notification_data.get('mihpayid')
 
-
         status = notification_data.get('status')
         if status == 'success':
             self._set_done()
-            # sale_order = self.sale_order_ids
-            # print(sale_order)
+            if self.sale_order_ids:
+                print('sale order', self.sale_order_ids)
+                self.sale_order_ids.action_confirm()
+                self.sale_order_ids._create_invoices()
 
-            # if self.sale_order_ids:
-            #     print('sale order')
-            #
-            #     self.sale_order_ids.action_confirm()
-            #     self.sale_order_ids._create_invoices()
-            #     for invoice in self.sale_order_ids.invoice_ids:
-            #         invoice.action_post()
-
-                # invoice.action_post()
         else:
             error_code = notification_data.get('error')
             print(error_code)
             self._set_error(
-                "PayU: " + _(notification_data.get('error_Message'))
+                "PayU: " + (notification_data.get('error_Message'))
 
             )

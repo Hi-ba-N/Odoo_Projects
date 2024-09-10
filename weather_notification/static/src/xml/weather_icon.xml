@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="weather_notification.Weather">
+        <Dropdown>
+           <t t-set-slot="toggler">
+               <div class="new_icon">
+           <div class="icon_div">
+               <div class="toggle-icon" role="button">
+                   <i id='weather_notification'
+                      class="fa fa-cloud fa-1.5x"
+                      style="color: white; margin-bottom:10px; padding:13px;"
+                      role="img" aria-label="Weather Notification"/>
+               </div>
+           </div>
+       </div>
+           </t>
+           <t t-set-slot="default">
+               <DropdownItem >
+                   <div>
+                       Hello
+                   </div>
+               </DropdownItem>
+
+           </t>
+   </Dropdown>
+
+
+
+<!--        <div class="icon_div">-->
+<!--               <div class="toggle-icon" role="button" t-on-click="displayWeather">-->
+<!--                   <i id='weather_notification'-->
+<!--                      class="fa fa-cloud fa-1.5x"-->
+<!--                      style="color: white; margin-bottom:10px; padding:13px;"-->
+<!--                      role="img" aria-label="Weather Notification"/>-->
+<!--               </div>-->
+<!--           </div>-->
+
+
+    </t>
+</templates>
+
