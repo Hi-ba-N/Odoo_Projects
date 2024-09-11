@@ -16,8 +16,37 @@
            </t>
            <t t-set-slot="default">
                <DropdownItem >
-                   <div>
-                       Hello
+                   <div class="oe_structure">
+                       <div>
+                    <span t-esc="state.date"/>
+                           </div>
+                       <div>
+                           <br/>
+                           <div>
+                     <h1><t t-esc="state.weather['temp']"/>
+                         <t t-esc="' '"/>
+                         <t t-esc="state.weather['main']"/>
+                         <t t-esc="state.weather['icon']"/>
+<!--                           <img t-att-src="'weather_notification/static/img/cloud2.jpeg'" width="100" height="60"/>-->
+                     </h1>
+
+                           </div>
+                        <span> <t t-esc="state.weather['description']"/>
+                             <t t-esc="' in '"/>
+                            <t t-esc="state.weather['city']"/>
+                        </span>
+                               <br/>
+                              <span> <t t-esc="'Near '"/>
+                                  <t t-esc="state.weather['city']"/>
+                              </span>
+                             <br/>
+                             <br/>
+                           <span><h6>Last update: </h6></span>
+                           <t t-esc="state.date" />
+                           <t t-esc="' '" />
+                           <t t-esc="state.time"/>
+
+                       </div>
                    </div>
                </DropdownItem>
 
@@ -26,14 +55,6 @@
 
 
 
-<!--        <div class="icon_div">-->
-<!--               <div class="toggle-icon" role="button" t-on-click="displayWeather">-->
-<!--                   <i id='weather_notification'-->
-<!--                      class="fa fa-cloud fa-1.5x"-->
-<!--                      style="color: white; margin-bottom:10px; padding:13px;"-->
-<!--                      role="img" aria-label="Weather Notification"/>-->
-<!--               </div>-->
-<!--           </div>-->
 
 
     </t>
