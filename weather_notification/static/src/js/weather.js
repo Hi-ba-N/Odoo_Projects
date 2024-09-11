@@ -17,7 +17,7 @@ class WeatherNotification extends Component {
             weather: null,
             error: null,
             date: new Date().toLocaleDateString(),
-            time : new Date().getHours()
+            time : new Date().toLocaleTimeString()
 
            });
             onWillStart(async () => {
@@ -44,15 +44,15 @@ class WeatherNotification extends Component {
                         main: data.weather[0].main,
                         description: data.weather[0].description,
                         city : data.name,
-                        icon : data.weather[0].icon
+                        icon : `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
                     };
                     }
                     else {
-                         console.log('errror')
+                         this.state.error = 'Error fetching weather data';
                     }
          }
          else {
-                  console.log('else error')
+                  this.state.error = 'Api key or City missing';
          }
 
 
