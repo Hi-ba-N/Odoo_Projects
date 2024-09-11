@@ -23,3 +23,7 @@ setup() {
     WeatherNotification.components = {Dropdown, DropdownItem };
    export const systrayItem = { Component: WeatherNotification,};
    registry.category("systray").add("WeatherNotification", systrayItem, { sequence: 100 });
+
+
+
+
