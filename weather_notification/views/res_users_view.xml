@@ -8,8 +8,9 @@
                 <xpath expr="//page[@name='preferences']" position="after">
                     <page string="Weather Settings" name="Weather">
                         <group>
-                            <field name="api_key"/>
-                            <field name="city"/>
+                            <field name="is_weather_api"/>
+                     <field name="api_key" invisible="not is_weather_api"/>
+                     <field name="city" invisible="not is_weather_api"/>
                         </group>
                     </page>
                 </xpath>

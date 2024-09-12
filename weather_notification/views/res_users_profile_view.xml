@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="res_users_view_form_weather" model="ir.ui.view">
+        <field name="name">res.users.view.form.weather.data</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="hr.res_users_view_form_profile" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+           <page  string="Weather Setting">
+                       <group>
+                        <field name="is_weather_api"/>
+                    <field name="api_key" invisible="not is_weather_api" password="True"/>
+                     <field name="city" invisible="not is_weather_api"/>
+               </group>
+                </page>
+            </xpath>
+        </field>
+     </record>
+    </odoo>

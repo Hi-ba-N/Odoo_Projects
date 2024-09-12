@@ -1,57 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="weather_notification.Weather">
-        <Dropdown>
-           <t t-set-slot="toggler">
-               <div class="new_icon">
-           <div class="icon_div">
-               <div class="toggle-icon" role="button">
-                   <i id='weather_notification'
-                      class="fa fa-cloud fa-1.5x"
-                      style="color: white; margin-bottom:10px; padding:13px;"
-                      role="img" aria-label="Weather Notification"/>
-               </div>
-           </div>
-       </div>
-           </t>
-           <t t-set-slot="default">
-               <DropdownItem >
-                   <div class="o_container">
-                       <div>
-                    <span t-esc="state.date"/>
-                           </div>
-                       <div>
-                           <div>
-                         <h1><t t-esc="state.weather['temp']"/>°C
-                         <t t-esc="' '"/>
-                         <t t-esc="state.weather['main']"/>
-                         <img t-att-src="state.weather.icon"  style="width: 150px; height: 80px;"/>
-                     </h1>
+        <t t-log="state.is_weather"/>
+        <t t-if="state.is_weather">
+            <Dropdown>
+                <t t-set-slot="toggler">
+                    <div class="new_icon">
+                        <div class="icon_div">
+                            <div class="toggle-icon" role="button">
+                                <i id='weather_notification'
+                                   class="fa fa-cloud fa-1.5x"
+                                   style="color: white; margin-bottom:10px; padding:13px;"
+                                   role="img"
+                                   aria-label="Weather Notification"/>
+                            </div>
+                        </div>
+                    </div>
 
-                           </div>
-                            <p>
-                            <span t-esc="state.weather['description']"/> in
-                            <strong><t t-esc="state.weather['city']"/></strong>
-                        </p>
+                </t>
+                <t t-set-slot="default">
+                    <DropdownItem>
+                        <div class="o_container">
+                            <div style="padding:10px; position: absolute; top: 0;  right: 0; background-color: #f8f8f8; margin:5px;">
+                                <i class="fa fa-refresh" role="img"
+                                   aria-label="Refresh" title="Refresh"
+                                   t-on-click="reload"/>
+                            </div>
+                            <div t-if="state.weather">
+                                <div>
+                                    <span t-esc="state.date"/>
+                                </div>
+                                <div>
+                                    <div>
+                                        <h1><t t-esc="state.weather['temp']"/>°C
+                                            <t t-esc="' '"/>
+                                            <t t-esc="state.weather['main']"/>
+                                            <img t-att-src="state.weather.icon"
+                                                 style="width: 150px; height: 100px;"/>
 
-                              <span> <t t-esc="'Near '"/>
-                                  <t t-esc="state.weather['city']"/>
-                              </span>
-                             <br/>
-                             <br/>
-                           <span><h6>Last update: </h6></span>
-                           <t t-esc="state.date" /> at
-                           <t t-esc="state.time"/>
+                                        </h1>
 
-                       </div>
-                   </div>
-               </DropdownItem>
+                                    </div>
+                                    <p>
+                                        <span t-esc="state.weather['description']"/>
+                                        in
+                                        <strong>
+                                            <t t-esc="state.weather['city']"/>
+                                        </strong>
+                                    </p>
 
-           </t>
-   </Dropdown>
+                                    <span>
+                                        <t t-esc="'Near '"/>
+                                        <t t-esc="state.weather['city']"/>
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <span>
+                                        <h6>Last update:</h6>
+                                    </span>
+                                    <t t-esc="state.date"/>
+                                    at
+                                    <t t-esc="state.time"/>
+                                </div>
+                            </div>
+                            <div
+                                 t-else=" "
+                                 t-esc="state.error"
+                            >
+                            </div>
+                        </div>
+
+                    </DropdownItem>
+
+                </t>
 
 
-
+            </Dropdown>
+        </t>
 
 
     </t>
