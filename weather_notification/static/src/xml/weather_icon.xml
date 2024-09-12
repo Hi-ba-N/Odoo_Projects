@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="weather_notification.Weather">
-        <t t-log="state.is_weather"/>
-        <t t-if="state.is_weather">
+        <t t-if="state.activate_weather_key">
+        <t t-log="state.activate_weather_key"/>
             <Dropdown>
                 <t t-set-slot="toggler">
                     <div class="new_icon">
@@ -20,23 +20,26 @@
                 </t>
                 <t t-set-slot="default">
                     <DropdownItem>
-                        <div class="o_container">
-                            <div style="padding:10px; position: absolute; top: 0;  right: 0; background-color: #f8f8f8; margin:5px;">
+                        <div class="o_container" style="position: relative; padding: 10px;">
+                            <div
+                                style="position: absolute; top: 10px; right: 10px;">
+<!--                                    style="padding:10px; position: absolute; top: 0;  right: 0; background-color: #f8f8f8; margin:5px;"-->
+
                                 <i class="fa fa-refresh" role="img"
                                    aria-label="Refresh" title="Refresh"
+                                   style="cursor: pointer; font-size: 18px;"
                                    t-on-click="reload"/>
                             </div>
-                            <div t-if="state.weather">
+                            <div t-if="state.weather" class="weather-info">
                                 <div>
                                     <span t-esc="state.date"/>
                                 </div>
-                                <div>
                                     <div>
                                         <h1><t t-esc="state.weather['temp']"/>°C
                                             <t t-esc="' '"/>
                                             <t t-esc="state.weather['main']"/>
                                             <img t-att-src="state.weather.icon"
-                                                 style="width: 150px; height: 100px;"/>
+                                                 style="width: 150px; height: 100px; margin-left: 10px;"/>
 
                                         </h1>
 
@@ -62,8 +65,8 @@
                                     at
                                     <t t-esc="state.time"/>
                                 </div>
-                            </div>
-                            <div
+
+                            <div class="error-message" style="color: red; font-weight: bold; text-align: center; margin-top: 50px;"
                                  t-else=" "
                                  t-esc="state.error"
                             >
