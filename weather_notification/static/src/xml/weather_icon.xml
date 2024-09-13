@@ -16,7 +16,6 @@
                             </div>
                         </div>
                     </div>
-
                 </t>
                 <t t-set-slot="default">
                     <DropdownItem>

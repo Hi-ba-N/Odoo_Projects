@@ -28,17 +28,6 @@ class HospitalOp(models.Model):
     # check=self.env['sale.order'].search([('amount_total', '>=', 500)]).read(['partner_id','name','amount_total'])
     # print(check)
 
-    # from odoo import http
-    # from odoo.http import request
-    #
-    # class WeatherController(http.Controller):
-    #
-    #     @http.route('/get_weather_info', type='json', auth="user")
-    #     def get_weather_info(self):
-    #         user = request.env.user
-    #         return {
-    #             'city': user.city,  # Assuming you added a 'city' field to res.users
-    #             'apiKey': user.api_key,  # Assuming you added an 'api_key' field to res.users
-    #         }
+
 
 
