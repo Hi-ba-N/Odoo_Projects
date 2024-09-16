@@ -11,3 +11,5 @@ class ProjectDate(models.Model):
     year = fields.Char(string="Year", readonly=True)
     from_date = fields.Date(string="Start Date", readonly=True)
     to_date = fields.Date(string="End Date", readonly=True)
+    start_day = fields.Char(string="Start Day", readonly=True)
+    end_day = fields.Char(string="End Day", readonly=True)

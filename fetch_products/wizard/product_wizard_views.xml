@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="menu_fetch_product_wizard" model="ir.ui.view">
+       <field name="name">menu.fetch.product.wizard</field>
+       <field name="model">product.wizard</field>
+       <field name="arch" type="xml">
+           <form string="String">
+
+               <footer>
+                   <button name="action_fetch_product" string="Fetch Products"  class="oe_highlight" type="object" />
+                   <button name="cancel" string="Cancel" special="cancel" class="oe_highlight" />
+               </footer>
+           </form>
+       </field>
+   </record>
+
+       <record id="product_fetch_action" model="ir.actions.act_window">
+        <field name="name">Fetch Products</field>
+        <field name="res_model">product.wizard</field>
+           <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+     <menuitem id="menu_product_fetch"
+                parent="sale.product_menu_catalog"
+                 name="Fetch Products"
+                 action="product_fetch_action"
+                />
+</odoo>

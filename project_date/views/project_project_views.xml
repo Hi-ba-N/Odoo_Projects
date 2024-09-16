@@ -6,7 +6,9 @@
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
              <xpath expr="//header" position="inside">
-                 <button name="action_schedule_date" string="Schedule Date" class="oe_highlight" type="object"/>
+                 <button name="action_schedule_date" string="Schedule Date" class="oe_highlight" type="object"
+                         invisible="month_line_ids , '!=','False'"
+                 />
              </xpath>
             <xpath expr="//notebook" position="inside">
             <page  string="Schedule Date">
@@ -16,7 +18,9 @@
                         <field name="month"/>
                         <field name="year"/>
                         <field name="from_date"/>
+                        <field name="start_day"/>
                         <field name="to_date"/>
+                        <field name="end_day"/>
                     </tree>
                 </field>
 
