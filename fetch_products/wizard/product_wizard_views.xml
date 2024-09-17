@@ -5,7 +5,19 @@
        <field name="model">product.wizard</field>
        <field name="arch" type="xml">
            <form string="String">
-
+               <group>
+               <group>
+                   <field name="url_db1"/>
+                   <field name="db_1"/>
+                   <field name="username_db_1"/>
+                   <field name="password_db_1" password="True"/>
+               </group>
+               <group>
+                    <field name="url_db2"/>
+                   <field name="db_2"/>
+                   <field name="username_db_2"/>
+               </group>
+               </group>
                <footer>
                    <button name="action_fetch_product" string="Fetch Products"  class="oe_highlight" type="object" />
                    <button name="cancel" string="Cancel" special="cancel" class="oe_highlight" />
