@@ -1,13 +1,12 @@
 # coding: utf-8
-from odoo import fields, models
+from odoo import fields, models, _
 import xmlrpc.client
-
-from odoo.addons.base.controllers.rpc import RPC_FAULT_CODE_WARNING
 from odoo.exceptions import ValidationError
+from odoo.osv import osv
 
 
 class ProductWizard(models.TransientModel):
-    """This model is used for creating wizard """
+    """This model is used for creating wizard to fetch products from odoo 16  """
     _name = 'product.wizard'
     _description = "Product Wizard"
 
@@ -26,7 +25,7 @@ class ProductWizard(models.TransientModel):
                                 readonly=True)
 
     def action_fetch_product(self):
-        """ Action to fetch Products from Odoo 16 instance"""
+        """ Action to fetch Products from Odoo 16 """
         try:
             common_1 = xmlrpc.client.ServerProxy(
                 '{}/xmlrpc/2/common'.format(self.url_db1))
@@ -44,37 +43,52 @@ class ProductWizard(models.TransientModel):
                                             password_db_2, {})
             print(uid_db2)
             if not uid_db1:
+                print('not')
                 raise ValidationError(
                     "Credentials are not valid")
-            # db_1_products = models_1.execute_kw(self.db_1, uid_db1, self.password_db_1,
-            #                                     'product.template', 'search_read',
-            #                                     [[]], {
-            #                                         'fields': ['id', 'name'
-            #                                                    ]})
-            # print(db_1_products)
-            #
-            # for product in db_1_products:
-            #     new_products = models_2.execute_kw(self.db_2, uid_db2, password_db_2,
-            #                                        'product.template',
-            #                                        'create',
-            #                                        [[product]])
-            #     print(new_products)
-        except xmlrpc.client.Fault as e:
-            print(e)
+            db_1_products = models_1.execute_kw(self.db_1, uid_db1,
+                                                self.password_db_1,
+                                                'product.template',
+                                                'search_read',
+                                                [[]], {
+                                                    'fields': ['id', 'name'
+                                                               ]})
+            print(db_1_products)
+            for product in db_1_products:
+                existing_products = models_2.execute_kw(self.db_2, uid_db2,
+                                                        password_db_2,
+                                                        'product.template',
+                                                        'search',
+                                                        [[('name', '=',
+                                                           product['name'])]])
+                print(existing_products)
+                if not existing_products:
+                    new_products = models_2.execute_kw(self.db_2, uid_db2,
+                                                       password_db_2,
+                                                       'product.template',
+                                                       'create',
+                                                       [[product]])
+
+                message = {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': _("Success"),
+                        'type': 'success',
+                        'message': _("Product Fetched Successfully"),
+                        'sticky': True,
+                        'next': {
+                            'name': _('Products'),
+                            'res_model': 'product.template',
+                            'type': 'ir.actions.act_window',
+                            'view_mode': 'kanban',
+
+                        },
+                    },
+                }
+                print(message['params'])
+                print(self.env.context)
+                return message
+        except:
             raise ValidationError(
-                e.faultString)
-
-
-
-
-
-
-
-
-        # all_id = models_2.execute_kw(db_2, uid_db2, password_db_2,
-        #                              'product.template', 'search', [[]])
-        # print(all_id)
-        # for product in all_id:
-        #     models_2.execute_kw(db_2, uid_db2, password_db_2, 'product.template',
-        #                         'unlink',
-        #                         [[product]])
+                "Invalid Credentials")
