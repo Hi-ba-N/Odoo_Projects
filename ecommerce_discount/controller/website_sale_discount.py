@@ -7,21 +7,26 @@ class WebsiteSaleDiscount(WebsiteSale):
 
     @http.route()
     def cart(self, access_token=None, revive='', **post):
-        print('hello')
         result = super().cart(access_token, revive, **post)
         order = request.website.sale_get_order()
-
-        # Apply promotion only for E-Commerce orders
         if order and order.website_id:
-            # Look for a specific promotion (e.g., "5% E-Commerce Discount")
+            print('website')
             promotion_program = request.env['loyalty.program'].sudo().search([
-                ('name', '=', '5 % Discountt'),
+                ('name', '=', '5% Discountt'),
                 ('active', '=', True)
             ], limit=1)
-
-            # Apply the promotion automatically if found
-            if promotion_program and not order.applied_coupon_ids:
-                # Apply promotion by adding the corresponding reward
-                promotion_program.apply_loyalty(order)
-
+            if promotion_program:
+                print(order.amount_total)
+                discount_value = promotion_program.reward_ids.discount
+                print(discount_value)
+                discount_total = order.amount_total * discount_value / 100
+                total_discount = order.amount_total - discount_total
+                print(discount_total)
+                print(total_discount)
+                # order.amount_total -= order.amount_total * discount_value / 100
+                print(order.amount_total)
+                # promotion_program.apply_loyalty(order)
+                result.qcontext.update({'discount_total': total_discount})
+                print(result.qcontext)
         return result
+

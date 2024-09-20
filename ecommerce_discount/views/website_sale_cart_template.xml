@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="cart_discount_template" inherit_id="website_sale.cart">
+     <template id="cart_discount_template" inherit_id="website_sale.total">
+    <xpath expr="//div[@id='cart_total']" position="inside">
+        <t t-if="discount_total">
+            <div class="alert alert-success text-start mt16" role="alert">
+                                    You have successfully applied the 5% discount on your order <strong t-esc="website_sale_order.get_promo_code_success_message()"/>
+            </div>
+                            </t>
+        <xpath expr="//tr[@id='order_total']" position="after">
+<!--             <td colspan="2" class="border-0 ps-0 pt-3"><strong>Total After Discount</strong></td>-->
+<!--                    <td class="text-end border-0 px-0 pt-3">-->
+<!--                        <strong t-esc="discount_total"-->
+<!--                                class="monetary_field text-end p-0"-->
+<!--                                t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>-->
+<!--                    </td>-->
+                 <tr id="order_total_discount" class="border-top">
+                    <td colspan="2" class="border-0 ps-0 pt-3"><strong>Total Including Discount </strong></td>
+                    <td class="text-end border-0 px-0 pt-3">
+                        <strong t-esc="discount_total"
+                                class="monetary_field text-end p-0"
+                                t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+        </xpath>
+
+
+
+<!--    <template id="cart_discount_template" inherit_id="website_sale.cart">-->
 <!--        <xpath expr="//tr[@class='oe_currency_value'][last()]" position="after">-->
-           <!-- <tr t-if="order.applied_coupon_ids">
-                <td colspan="3" class="text-right">Discount Applied (5%)</td>
-                <td class="text-right oe_currency_value">
-                    <span t-esc="'-%0.2f' % order.applied_coupon_ids.discount"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="text-right">Total After Discount</td>
-                <td class="text-right oe_currency_value">
-                    <span t-esc="'%0.2f' % order.amount_total"/>
-                </td>
-            </tr>-->
-<!--        </xpath>-->
+<!--          <t t-esc="discount_total"/>-->
+<!--&lt;!&ndash;           <tr t-esc="website_sale_order.amount_total">&ndash;&gt;-->
+
+<!--                <td colspan="3" class="text-right">Discount Applied (5%)</td>-->
+<!--                <td class="text-right oe_currency_value">-->
+<!--                    <span t-esc="'-%0.2f' % website_sale_order.amount_total.discount"/>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td colspan="3" class="text-right">Total After Discount</td>-->
+<!--                <td class="text-right oe_currency_value">-->
+<!--                    <span t-esc="'%0.2f' % order.amount_total"/>-->
+<!--                </td>-->
+<!--            </tr>-->
+        </xpath>
     </template>
 </odoo>
