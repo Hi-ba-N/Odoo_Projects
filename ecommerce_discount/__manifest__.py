@@ -8,7 +8,7 @@
     'depends': ['website_sale'],
 
     'data': [
-
+     # 'views\website_sale_cart_template.xml'
 
     ],
 

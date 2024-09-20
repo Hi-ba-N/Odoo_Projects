@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="cart_discount_template" inherit_id="website_sale.cart">
+<!--        <xpath expr="//tr[@class='oe_currency_value'][last()]" position="after">-->
+           <!-- <tr t-if="order.applied_coupon_ids">
+                <td colspan="3" class="text-right">Discount Applied (5%)</td>
+                <td class="text-right oe_currency_value">
+                    <span t-esc="'-%0.2f' % order.applied_coupon_ids.discount"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-right">Total After Discount</td>
+                <td class="text-right oe_currency_value">
+                    <span t-esc="'%0.2f' % order.amount_total"/>
+                </td>
+            </tr>-->
+<!--        </xpath>-->
+    </template>
+</odoo>
