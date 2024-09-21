@@ -2,10 +2,30 @@
 <odoo>
      <template id="cart_discount_template" inherit_id="website_sale.total">
     <xpath expr="//div[@id='cart_total']" position="after">
-<!--        <t t-if="promotion_message">-->
+        <t t-if="promotion_message">
             <div class="alert alert-success text-start mt16" role="alert">
                                     You have successfully applied the 5% discount on your order <strong t-esc="website_sale_order.get_promo_code_success_message()"/>
             </div>
+        </t>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--                            </t>-->
 <!--        <xpath expr="//tr[@id='order_total']" position="after">-->
 <!--&lt;!&ndash;             <td colspan="2" class="border-0 ps-0 pt-3"><strong>Total After Discount</strong></td>&ndash;&gt;-->
